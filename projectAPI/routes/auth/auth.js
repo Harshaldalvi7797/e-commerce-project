@@ -4,6 +4,7 @@ let jwt = require("jsonwebtoken");
 let User = require("../../dbModel/user");
 let Joi=require("@hapi/joi");
 let bcrypt = require("bcrypt");
+let config = require("config");
 
 router.post("/login", async (req,res)=>
 {
@@ -21,7 +22,7 @@ router.post("/login", async (req,res)=>
     let password = await bcrypt.compare(req.body.UserLogin.password, user.UserLogin.password);
     if(!password) {return res.status(403).send({message:"Invalid password"}) };
 
-    let token = jwt.sign({_id: user._id}, "jwtprivatekey")
+    let token = jwt.sign({_id: user._id}, "apitoken")
     res.send({message:"Login Successfull", token:token})
 
 });

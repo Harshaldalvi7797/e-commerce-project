@@ -4,7 +4,12 @@ let mongoose = require("mongoose");
 let port = process.env.PORT || 4600;
 let user = require("./routes/userRoute");
 let auth = require("./routes/auth/auth");
+let config = require("config");
  app.use(express.json());
+ if(!config.get("apitoken"))
+ {
+     process.exit(1);
+ }
 
  mongoose
     .connect("mongodb://localhost/ecomm", { useNewUrlParser: true, useUnifiedTopology: true })
