@@ -1,5 +1,6 @@
 let express = require("express");
 let router = express.Router();
+let jwt = require("jsonwebtoken");
 let User = require("../../dbModel/user");
 let Joi=require("@hapi/joi");
 let bcrypt = require("bcrypt");
@@ -18,8 +19,10 @@ router.post("/login", async (req,res)=>
     //after password bcrypt
     // @ts-ignore
     let password = await bcrypt.compare(req.body.UserLogin.password, user.UserLogin.password);
-    if(!password) {return res.status(403).send({message:"Invalid password"}) }
-    res.send({message:"Login Successfull"})
+    if(!password) {return res.status(403).send({message:"Invalid password"}) };
+
+    let token = jwt.sign({_id: user._id}, "jwtprivatekey")
+    res.send({message:"Login Successfull", token:token})
 
 });
 
