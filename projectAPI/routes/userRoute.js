@@ -1,53 +1,28 @@
-// @ts-nocheck
 let express = require("express");
 let router= express.Router();
 let joi = require("@hapi/joi");
 let User = require("../dbModel/user");
+let bcryt = require("bcrypt");
 
 
 
-//Fetch data
-
-router.get("/fetchuser", async (req,res)=>
-{
-    let data = await User.find();
-    res.send({d:data});
-
-})
-
-
-//fetch data by id
-
-router.get("/fetchuser/:id" , async (req,res) =>
-{
-    let user = await User.findById(req.params.id);
-    if(!user)
-    {
-        res.status(404).send({message: "Invalid user id"});
-
-    }
-    res.send({data : user});
-
-})
-
-//Create Data
-
-
+//insert Data
 router.post("/createuser", async (req,res)=>
 {
-    // let user = User.findOne({"UserLogin.EmailId": req.body.UserLogin.EmailId});
-    // if(!user) 
-    // {
-    //     return res.status(403).send({Message:"User Already Exist"})
-    // }
-    // let {error} = validationError(req.body);
-    // if(error) 
-    // {
-    //     return  res.send(error.details[0].message);
-    // }
+    let user = await User.userModel.findOne({"UserLogin.EmailId": req.body.UserLogin.EmailId});
+    if(user) 
+    {
+        return res.status(403).send({message:"User Already Exist"})
+    }
 
-    
-    let newuser = new User({
+    let {error} = User.validationError(req.body);
+    if(error) 
+    {
+        return  res.send(error.details[0].message);
+    }
+
+
+    let newuser = new User.userModel({
         FirstName : req.body.FirstName,
         LastName : req.body.LastName,
         UserLogin : req.body.UserLogin,
@@ -57,39 +32,79 @@ router.post("/createuser", async (req,res)=>
         updateDate : req.body.updateDate
 
     });
+
+    let salt = await bcryt.genSalt(10);
+    // @ts-ignore
+    newuser.UserLogin.password  = await bcryt.hash(newuser.UserLogin.password , salt)
     let data = await newuser.save();
-    res.send({Message:"Thank You", d: data});
+    res.send({message:"Thank You", d: data});
 
 
 })
+
+
+
+
+
+//Fetch all data
+// @ts-ignore
+router.get("/fetchuser", async (req,res)=>
+{
+    let data = await User.userModel.find();
+    res.send({d:data});
+
+})
+
+
+//fetch data by id
+
+router.get("/fetchuser/:id" , async (req,res) =>
+{
+    let user = await User.userModel.findById(req.params.id);
+    if(!user)
+    { return res.status(404).send({message: "Invalid user id"});}
+     res.send({data : user});
+
+});
+
+
+
+
 
 //update data
 
 router.put("/updateuser/:id" , async (req,res)=>
 {
-    let user = User.userModel.findOne({ "UserLogin.EmailId": req.body.UserLogin.EmailId });
+    let user = await User.userModel.findById(req.params.id);
   
     if(!user)
     {
-        res.status(404).send({message: "Invalid user id"});
+       return res.status(404).send({message: "Invalid user id"});
     }
-    let {error} = validationError(req.body);
+    let {error} = User.validationError(req.body);
     if(error) 
     {
         return  res.send(error.details[0].message);
     }
 
+    // @ts-ignore
     user.FirstName = req.body.FirstName,
    
+    // @ts-ignore
     user.LastName = req.body.LastName,
+    // @ts-ignore
+    user.newsletterCheck = req.body.newsletterCheck,
 
    
+    // @ts-ignore
     user.UserLogin.EmailId = req.body.UserLogin.EmailId,
   
+    // @ts-ignore
     user.UserLogin.password = req.body.UserLogin.password,
+    // @ts-ignore
     user.isAdmin = req.body.isAdmin
     await user.save();
-    res.send({ message: "data updated", d: data })
+    res.send({ message: "data updated" })
 
 
 })
@@ -98,7 +113,7 @@ router.put("/updateuser/:id" , async (req,res)=>
 
 router.delete("/removeuser/:id" , async (req,res) =>
 {
-    let user = await User.findByIdAndRemove(req.params.id);
+    let user = await User.userModel.findByIdAndRemove(req.params.id);
     if (!user) {
         res.status(404).send({ message: "Invalid User Id" });
     }
@@ -106,19 +121,8 @@ router.delete("/removeuser/:id" , async (req,res) =>
 })
 
 
+//IEP information expert principle
 
-function validationError(error) {
-    let schema = joi.object({
-        FirstName: joi.string().min(3).max(25).required(),
-        LastName: joi.string().min(3).max(25).required(),
-        newsletterCheck:joi.required(),
-        UserLogin: {
-            EmailId: joi.string().email(),
-            password: joi.string().required()
-        },
-        isAdmin: joi.required()
-    })
-    return schema.validate(error);
-}
+
 
 module.exports= router;
