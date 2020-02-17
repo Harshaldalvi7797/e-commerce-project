@@ -6,6 +6,7 @@ let user = require("./routes/userRoute");
 let auth = require("./routes/auth/auth");
 let config = require("config");
 let mailer = require("./routes/mailer");
+let forgetpssword = require("./routes/forget.password");
  app.use(express.json());
  if(!config.get("apitoken"))
  {
@@ -22,3 +23,4 @@ app.listen(port, () => console.log(`connected to port`));
 app.use("/api", user);
 app.use("/api/userlogin",auth)
 app.use("/api",mailer);
+app.use("/api",forgetpssword);
