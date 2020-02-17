@@ -18,7 +18,7 @@ let userSchema= new mongoose.Schema({
 
 userSchema.methods.UserToken = function()
 {
-    let token = jwt.sign({_id: this._id}, "apitoken");
+    let token = jwt.sign({_id: this._id}, config.get("apitoken"));
     return token;
 }
 

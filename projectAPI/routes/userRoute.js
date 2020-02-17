@@ -3,6 +3,7 @@ let router= express.Router();
 let joi = require("@hapi/joi");
 let User = require("../dbModel/user");
 let bcryt = require("bcrypt");
+ let auth = require("./middleware/userAuth");
 
 
 
@@ -48,7 +49,7 @@ router.post("/createuser", async (req,res)=>
 
 //Fetch all data
 // @ts-ignore
-router.get("/fetchuser", async (req,res)=>
+router.get("/fetchuser",auth, async (req,res)=>
 {
     let data = await User.userModel.find();
     res.send({d:data});

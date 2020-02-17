@@ -14,8 +14,7 @@ router.post("/login", async (req,res)=>
     let user = await User.userModel.findOne({"UserLogin.EmailId": req.body.UserLogin.EmailId});
     if(!user){ return res.status(403).send({message:"Invalid UserId"}) }
 
-    // let password = await User.findOne({"UserLogin.password" : req.body.UserLogin.password});
-    // if(!password) {return res.status(403).send({message:"Invalid Password"}) }
+    
 
     //after password bcrypt
     // @ts-ignore
@@ -25,7 +24,8 @@ router.post("/login", async (req,res)=>
     // let token = jwt.sign({_id: user._id}, "apitoken");
     // @ts-ignore
     let token = user.UserToken();
-    res.header("a-auth-token",token).send({message:"Login Successfull", token:token})
+    res.header("x-auth-token",token).send({message:"Login Successfull", token:token})
+  
 
 });
 
