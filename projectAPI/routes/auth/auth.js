@@ -23,8 +23,9 @@ router.post("/login", async (req,res)=>
     if(!password) {return res.status(403).send({message:"Invalid password"}) };
 
     // let token = jwt.sign({_id: user._id}, "apitoken");
+    // @ts-ignore
     let token = user.UserToken();
-    res.send({message:"Login Successfull", token:token})
+    res.header("a-auth-token",token).send({message:"Login Successfull", token:token})
 
 });
 
