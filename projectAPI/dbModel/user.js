@@ -12,7 +12,9 @@ let userSchema= new mongoose.Schema({
     newsletterCheck:{type:Boolean},
     isAdmin:{ type:Boolean},
     recordDate:{type:Date , default:Date.now},
-    updateDate : {type:Date , default : Date.now}
+    updateDate : {type:Date , default : Date.now},
+    resetpasswordtoken:{type:String},
+    resetpasswordexpire:{type:Date},
   
 });
 
