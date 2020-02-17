@@ -4,6 +4,7 @@ let joi = require("@hapi/joi");
 let User = require("../dbModel/user");
 let bcryt = require("bcrypt");
  let auth = require("./middleware/userAuth");
+ let admin = require("./middleware/admin");
 
 
 
@@ -49,7 +50,7 @@ router.post("/createuser", async (req,res)=>
 
 //Fetch all data
 // @ts-ignore
-router.get("/fetchuser",auth, async (req,res)=>
+router.get("/fetchuser",[auth,admin], async (req,res)=>
 {
     let data = await User.userModel.find();
     res.send({d:data});
@@ -112,7 +113,7 @@ router.put("/updateuser/:id" , async (req,res)=>
 
 //Remove data
 
-router.delete("/removeuser/:id" , async (req,res) =>
+router.delete("/removeuser/:id",[auth,admin] , async (req,res) =>
 {
     let user = await User.userModel.findByIdAndRemove(req.params.id);
     if (!user) {
