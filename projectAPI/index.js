@@ -9,6 +9,8 @@ let mailer = require("./routes/mailer");
 let forgetpssword = require("./routes/forget.password");
 let contact = require("./routes/contactApi");
 let product= require("./routes/productApi");
+let category = require("./routes/categoryApi");
+
 app.use("/uploads" , express.static("uploads"));
 
  app.use(express.json());
@@ -30,3 +32,4 @@ app.use("/api",mailer);
 app.use("/api",forgetpssword);
 app.use("/api",contact);
 app.use("/api",product);
+app.use("/api", category);
