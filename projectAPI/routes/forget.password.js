@@ -16,6 +16,7 @@ router.post("/forgetpassword/:token", async (req,res)=>
     if(!user) { return res.status(403).send({message:"invalid token or token got expires"}) }
     let {error} = validationError(req.body);
     if(error) { return res.send(error.details[0].message) };
+    // @ts-ignore
     let oldpassword = await bcrypt.compare(req.body.UserLogin.password , user.UserLogin.password);
     if(oldpassword) { return res.status(402).send({message :"its same ."}) };
     console.log(oldpassword);

@@ -117,7 +117,7 @@ router.delete("/removeuser/:id",[auth,admin] , async (req,res) =>
 {
     let user = await User.userModel.findByIdAndRemove(req.params.id);
     if (!user) {
-        res.status(404).send({ message: "Invalid User Id" });
+       return res.status(404).send({ message: "Invalid User Id" });
     }
     res.send({ message: "Thank You! Come Back Again:)" });
 })
