@@ -8,6 +8,9 @@ let config = require("config");
 let mailer = require("./routes/mailer");
 let forgetpssword = require("./routes/forget.password");
 let contact = require("./routes/contactApi");
+let product= require("./routes/productApi");
+app.use("/uploads" , express.static("uploads"));
+
  app.use(express.json());
  if(!config.get("apitoken"))
  {
@@ -26,3 +29,4 @@ app.use("/api/userlogin",auth)
 app.use("/api",mailer);
 app.use("/api",forgetpssword);
 app.use("/api",contact);
+app.use("/api",product);
