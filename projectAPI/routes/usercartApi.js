@@ -70,20 +70,26 @@ router.delete("/removecart/:id" , async (req,res)=>
 
 } )
 
-router.post("/addusercart",uploads.single("image"), async(req,res)=>
+router.post("/addusercart", async(req,res)=>
 {
-    // @ts-ignore
-    let userCart = new Cart.usercartSchema({
-        userEmail : req.body.userEmail,
-        cartItem:
-        {
+    try {
+        let aa= await Cart.cartItemRecords.find().select("name")
+        console.log(aa);
+        // @ts-ignore
+       
+        let userCart = new Cart.userCartItem({
+            userEmail : req.body.userEmail,
+            cartItem:aa
+           
             
-
-        }
-
-
-    })
-
+        });
+        let data=await userCart.save();
+        res.send({message:"data addede successfully",item:data});
+    } catch (error) {
+      console.log(error.message);
+        
+    }
+  
 
 })
 

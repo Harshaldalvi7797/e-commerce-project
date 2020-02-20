@@ -2,22 +2,22 @@ let mongoose = require("mongoose");
 
 let cartItemSchema = new mongoose.Schema({
 
-    prodId : { type: String , required:true },
-    name : { type:String,required:true },
-    image : {type:String, required: true },
-    price : {type:Number, required:true },
-    quantity : {type: Number , required:true},
-    totalPrice :{type:Number, required:true},
+    prodId : { type: String  },
+    name : { type:String },
+    image : {type:String },
+    price : {type:Number},
+    quantity : {type: Number },
+    totalPrice :{type:Number },
     recordDate:{type:Date,default:Date.now},
     updatedate:{type:Date,default:Date.now}
 });
 let cartItemRecords = mongoose.model('cartItemRecords', cartItemSchema);
 
 let usercartSchema  = new mongoose.Schema({
-    userEmail : {type: String,required:true},
+    userEmail : {type: String},
     cartItem : [cartItemSchema]
 });
 
 let userCartItem = mongoose.model('usercartItem',usercartSchema);
 
-module.exports = {usercartSchema, cartItemRecords};
+module.exports = { cartItemRecords,userCartItem,cartItemSchema};

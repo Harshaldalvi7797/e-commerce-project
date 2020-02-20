@@ -4,7 +4,7 @@ let config = require("config");
 
 let productSchema = new mongoose.Schema({
     name : {type:String , min:3,max:250,required:false},
-    image: {type:String,required:true,minlength:3,maxlength:100},
+    image: {type:String},
     description:{type:String,required:true,minlength:10,maxlength:250},
     price:{type:Number,required:true,minlength:1},
     offerPrice:{type:Number,required:true,minlength:1},
