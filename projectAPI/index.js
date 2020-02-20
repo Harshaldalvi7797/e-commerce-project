@@ -10,6 +10,7 @@ let forgetpssword = require("./routes/forget.password");
 let contact = require("./routes/contactApi");
 let product= require("./routes/productApi");
 let category = require("./routes/categoryApi");
+let cartItem = require("./routes/usercartApi");
 
 app.use("/uploads" , express.static("uploads"));
 
@@ -33,3 +34,4 @@ app.use("/api",forgetpssword);
 app.use("/api",contact);
 app.use("/api",product);
 app.use("/api", category);
+app.use("/api",cartItem);

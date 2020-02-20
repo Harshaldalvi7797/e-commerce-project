@@ -107,7 +107,7 @@ router.put("/updateproduct/:id", async (req,res)=>
     // @ts-ignore
     product.name = req.body.name
     // product.name = req.body.name
-     product.image= port + "/uploads/" + req.file.image
+    //  product.image= port + "/uploads/" + req.file.image
     console.log(product);
 
    let   data=  await product.save();
