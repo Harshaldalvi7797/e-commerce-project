@@ -15,7 +15,9 @@ class Login extends Component {
                     <h1>Login</h1>
                     <form action="" method="post" name="login">
                       <div className="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
+                        <label htmlFor="exampleInputEmail1">
+                          Email address
+                        </label>
                         <input
                           type="email"
                           name="email"
@@ -26,9 +28,9 @@ class Login extends Component {
                         />
                       </div>
                       <div className="form-group">
-                        <label for="exampleInputEmail1">Password</label>
+                        <label htmlFor="exampleInputEmail1">Password</label>
                         <input
-                          type="password"
+                          type="text"
                           name="password"
                           id="password"
                           className="form-control"
@@ -58,10 +60,7 @@ class Login extends Component {
                       </div>
                       <div className="col-md-12 mb-3">
                         <p className="text-center">
-                          <a
-                            href="javascript:void();"
-                            className="google btn mybtn"
-                          >
+                          <a className="google btn mybtn">
                             <i className="fa fa-google-plus"></i> Signup using
                             Google
                           </a>

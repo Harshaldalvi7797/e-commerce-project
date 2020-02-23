@@ -4,12 +4,62 @@ import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { userRegister } from "../../redux/action/user/user";
+import SimpleReactValidator from "simple-react-validator";
 
 class Signup extends Component {
   constructor() {
     // @ts-ignore
     super();
+    this.state = {
+      FirstName: "",
+      LastName: "",
+      UserLogin: {
+        EmailId: "",
+        password: ""
+      }
+    };
+    this.validator = new SimpleReactValidator({ autoForceUpdate: this });
   }
+  setFirstName = e => this.setState({ FirstName: e.target.value });
+  setLastName = e => this.setState({ LastName: e.target.value });
+
+  setEmailId = e => {
+    let a = Object.assign({}, this.state.UserLogin);
+    console.log(a);
+    a.EmailId = e.target.value;
+    this.setState({ UserLogin: a });
+  };
+  setpassword = e => {
+    let b = Object.assign({}, this.state.UserLogin);
+    console.log(b);
+    b.password = e.target.value;
+    this.setState({ UserLogin: b });
+  };
+
+  Inputdata = e => {
+    console.log(e.target.value);
+    this.setState({ [e.target.name]: e.target.value });
+  };
+  handleFormSubmit = e => {
+    e.preventDefault();
+
+    if (this.validator.allValid()) {
+      let data = {
+        FirstName: this.state.FirstName,
+        Lastname: this.state.LastName,
+        UserLogin: {
+          EmailId: this.state.UserLogin.EmailId,
+          password: this.state.UserLogin.password
+        }
+      };
+      this.props.userRegister(data);
+
+      console.log(data);
+    } else {
+      this.validator.showMessages();
+      this.forceUpdate();
+    }
+  };
   render() {
     return (
       <div className="container login-container">
@@ -54,38 +104,66 @@ class Signup extends Component {
           <div className="col-md-6 login-form-2">
             <div className="login-logo"></div>
             <h3>SignUp here</h3>
-            <form>
+            <form onSubmit={this.handleFormSubmit}>
               <div className="form-group">
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Your First Name *"
-                  value=""
+                  name="FirstName"
+                  value={this.state.FirstName}
+                  onChange={this.setFirstName}
                 />
+                {this.validator.message(
+                  "FirstName",
+                  this.state.FirstName,
+                  "required|alpha|min:3"
+                )}
               </div>
               <div className="form-group">
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Your Last Name *"
-                  value=""
+                  name="LastName"
+                  value={this.state.LastName}
+                  onChange={this.setLastName}
                 />
+                {this.validator.message(
+                  "LastName",
+                  this.state.LastName,
+                  "required|alpha|min:4"
+                )}
               </div>
               <div className="form-group">
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Your Email *"
-                  value=""
+                  name="EmailId"
+                  value={this.state.UserLogin.EmailId}
+                  onChange={this.setEmailId}
                 />
+                {this.validator.message(
+                  "EmailId",
+                  this.state.UserLogin.EmailId,
+                  "required|email"
+                )}
               </div>
               <div className="form-group">
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Your Password *"
-                  value=""
+                  name="password"
+                  value={this.state.UserLogin.password}
+                  onChange={this.setpassword}
                 />
+                {this.validator.message(
+                  "password",
+                  this.state.UserLogin.password,
+                  "required|min:6"
+                )}
               </div>
               <div className="form-group">
                 <input type="submit" className="btnSubmit" value="Submit" />
