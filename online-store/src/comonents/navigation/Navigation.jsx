@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 class Navigation extends Component {
   constructor() {
+    // @ts-ignore
     super();
   }
   render() {
@@ -17,10 +18,12 @@ class Navigation extends Component {
               <Nav.Link as={Link} to={"/home"}>
                 Home
               </Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
+              <Nav.Link href="#link">Products</Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link href="#link">SignUp</Nav.Link>
+              <Nav.Link as={Link} to={"/signup"}>
+                SignUp
+              </Nav.Link>
               <Nav.Link as={Link} to={"/login"}>
                 Login
               </Nav.Link>

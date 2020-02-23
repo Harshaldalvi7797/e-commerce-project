@@ -1,69 +1,84 @@
 import React, { Component } from "react";
 import "../login/login.css";
+import { Link } from "react-router-dom";
 
 class Login extends Component {
   render() {
     return (
-      <div id="login">
-        <h3 className="text-center text-white pt-5">Login form</h3>
-        <div className="container">
-          <div
-            id="login-row"
-            className="row justify-content-center align-items-center"
-          >
-            <div id="login-column" className="col-md-6">
-              <div id="login-box" className="col-md-12">
-                <form id="login-form" className="form" action="" method="post">
-                  <h3 className="text-center text-info">Login</h3>
-                  <div className="form-group">
-                    {/* <label for="username" className="text-info">
-                      Username:
-                    </label> */}
-                    <br />
-                    <input
-                      type="text"
-                      name="username"
-                      id="username"
-                      className="form-control"
-                    />
-                  </div>
-                  <div className="form-group">
-                    {/* <label for="password" className="text-info">
-                      Password:
-                    </label> */}
-                    <br />
-                    <input
-                      type="text"
-                      name="password"
-                      id="password"
-                      className="form-control"
-                    />
-                  </div>
-                  <div className="form-group">
-                    {/* <label for="remember-me" className="text-info">
-                      <span>Remember me</span> 
-                      <span>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-5 mx-auto">
+            <div id="first">
+              <div className="myform form ">
+                <div className="logo mb-3">
+                  <div className="col-md-12 text-center">
+                    <h1>Login</h1>
+                    <form action="" method="post" name="login">
+                      <div className="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
                         <input
-                          id="remember-me"
-                          name="remember-me"
-                          type="checkbox"
+                          type="email"
+                          name="email"
+                          className="form-control"
+                          id="email"
+                          aria-describedby="emailHelp"
+                          placeholder="Enter email"
                         />
-                      </span>
-                    </label> */}
-                    <br />
-                    <input
-                      type="submit"
-                      name="submit"
-                      className="btn btn-info btn-md"
-                      value="submit"
-                    />
+                      </div>
+                      <div className="form-group">
+                        <label for="exampleInputEmail1">Password</label>
+                        <input
+                          type="password"
+                          name="password"
+                          id="password"
+                          className="form-control"
+                          aria-describedby="emailHelp"
+                          placeholder="Enter Password"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <p className="text-center">
+                          By signing up you accept our{" "}
+                          <a href="#">Terms Of Use</a>
+                        </p>
+                      </div>
+                      <div className="col-md-12 text-center ">
+                        <button
+                          type="submit"
+                          className=" btn btn-block mybtn btn-primary tx-tfm"
+                        >
+                          Login
+                        </button>
+                      </div>
+                      <div className="col-md-12 ">
+                        <div className="login-or">
+                          <hr className="hr-or" />
+                          <span className="span-or">or</span>
+                        </div>
+                      </div>
+                      <div className="col-md-12 mb-3">
+                        <p className="text-center">
+                          <a
+                            href="javascript:void();"
+                            className="google btn mybtn"
+                          >
+                            <i className="fa fa-google-plus"></i> Signup using
+                            Google
+                          </a>
+                        </p>
+                      </div>
+                      <div className="form-group">
+                        <p className="text-center">
+                          Don't have account?{" "}
+                          {/* <a href="#" id="signup">
+                            Sign up here
+                          </a> */}
+                          <Link to={"/signup"}> Sign up here</Link>
+                        </p>
+                      </div>
+                    </form>
                   </div>
-                  <div id="register-link" className="text-right">
-                    <a href="#" className="text-info">
-                      Register here
-                    </a>
-                  </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>
