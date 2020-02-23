@@ -3,6 +3,9 @@ import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 class Navigation extends Component {
+  constructor() {
+    super();
+  }
   render() {
     return (
       <React.Fragment>
