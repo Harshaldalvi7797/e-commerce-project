@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./signup.css";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { connect } from "react-redux";
+import { userRegister } from "../../redux/action/user/user";
 
 class Signup extends Component {
   constructor() {
@@ -79,7 +81,7 @@ class Signup extends Component {
               </div>
               <div className="form-group">
                 <input
-                  type="password"
+                  type="text"
                   className="form-control"
                   placeholder="Your Password *"
                   value=""
@@ -100,4 +102,8 @@ class Signup extends Component {
     );
   }
 }
-export default Signup;
+const mapStateToProps = state => {
+  console.log(state);
+  return state;
+};
+export default connect(mapStateToProps, { userRegister })(Signup);
