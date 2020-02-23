@@ -4,6 +4,6 @@ export const userRegister = item => {
   return async dispatch => {
     let sendData = userRegister(item);
     console.log(sendData);
-    dispatch({ type: USER_REGISTER, payload: sendData.data });
+    // dispatch({ type: USER_REGISTER, payload: sendData.data });
   };
 };
