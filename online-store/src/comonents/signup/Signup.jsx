@@ -171,7 +171,7 @@ class Signup extends Component {
                 {this.validator.message(
                   "password",
                   this.state.UserLogin.password,
-                  "required|min:6"
+                  "required|min:3"
                 )}
               </div>
               <div className="form-group">

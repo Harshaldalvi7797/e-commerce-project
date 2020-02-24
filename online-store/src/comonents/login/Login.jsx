@@ -1,8 +1,57 @@
 import React, { Component } from "react";
 import "../login/login.css";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { LoginUser } from "../../redux/action/user/user";
+import SimpleReactValidator from "simple-react-validator";
 
 class Login extends Component {
+  constructor() {
+    // @ts-ignore
+    super();
+    this.state = {
+      UserLogin: {
+        EmailId: "",
+        password: ""
+      }
+    };
+    this.validator = new SimpleReactValidator({ autoForceUpdate: this });
+  }
+
+  setEmailId = e => {
+    let a = Object.assign({}, this.state.UserLogin);
+    console.log(a);
+    a.EmailId = e.target.value;
+    this.setState({ UserLogin: a });
+  };
+  setpassword = e => {
+    let b = Object.assign({}, this.state.UserLogin);
+    console.log(b);
+    b.password = e.target.value;
+    this.setState({ UserLogin: b });
+  };
+
+  // Inputdata = e => {
+  //   console.log(e.target.value);
+  //   this.setState({ [e.target.name]: e.target.value });
+  // };
+
+  handleInput = e => {
+    e.preventDefault();
+    if (this.validator.allValid()) {
+      let data = {
+        UserLogin: {
+          EmailId: this.state.UserLogin.EmailId,
+          password: this.state.UserLogin.password
+        }
+      };
+      this.props.LoginUser(data);
+    } else {
+      this.validator.showMessages();
+      this.forceUpdate();
+    }
+  };
+
   render() {
     return (
       <div className="container">
@@ -13,30 +62,47 @@ class Login extends Component {
                 <div className="logo mb-3">
                   <div className="col-md-12 text-center">
                     <h1>Login</h1>
-                    <form action="" method="post" name="login">
+
+                    {this.props.error ? (
+                      <div className="alert alert-danger">
+                        hii
+                        {this.props.error}
+                      </div>
+                    ) : null}
+
+                    <form onSubmit={this.handleInput}>
                       <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">
-                          Email address
-                        </label>
+                        <label htmlFor="EmailId">Email address</label>
                         <input
-                          type="email"
-                          name="email"
+                          type="text"
+                          name="EmailId"
                           className="form-control"
-                          id="email"
-                          aria-describedby="emailHelp"
+                          value={this.state.UserLogin.EmailId}
                           placeholder="Enter email"
+                          onChange={this.setEmailId}
                         />
+                        {this.validator.message(
+                          "EmailId",
+                          this.state.UserLogin.EmailId,
+                          "required"
+                        )}
                       </div>
                       <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Password</label>
                         <input
-                          type="text"
+                          type="password"
                           name="password"
-                          id="password"
+                          value={this.state.UserLogin.password}
                           className="form-control"
                           aria-describedby="emailHelp"
                           placeholder="Enter Password"
+                          onChange={this.setpassword}
                         />
+                        {this.validator.message(
+                          "password",
+                          this.state.UserLogin.password,
+                          "required|min:3"
+                        )}
                       </div>
                       <div className="form-group">
                         <p className="text-center">
@@ -86,4 +152,9 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+const mapStateToProps = state => {
+  console.log(state.login, "mo");
+  return { error: state.login.message_error };
+};
+
+export default connect(mapStateToProps, { LoginUser })(Login);

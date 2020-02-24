@@ -15,10 +15,10 @@ router.post("/createuser", async (req, res) => {
     return res.status(403).send({ message: "User Already Exist" });
   }
 
-  let { error } = User.validationError(req.body);
-  if (error) {
-    return res.send(error.details[0].message);
-  }
+  // let { error } = User.validationError(req.body);
+  // if (error) {
+  //   return res.send(error.details[0].message);
+  // }
 
   let newuser = new User.userModel({
     FirstName: req.body.FirstName,
@@ -33,6 +33,7 @@ router.post("/createuser", async (req, res) => {
   let salt = await bcryt.genSalt(10);
   // @ts-ignore
   newuser.UserLogin.password = await bcryt.hash(
+    // @ts-ignore
     newuser.UserLogin.password,
     salt
   );
