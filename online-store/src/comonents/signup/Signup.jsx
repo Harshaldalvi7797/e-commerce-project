@@ -1,9 +1,10 @@
+// @ts-nocheck
 import React, { Component } from "react";
 import "./signup.css";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
-import { userRegister } from "../../redux/action/user/user";
+import { UserRegister } from "../../redux/action/user/user";
 import SimpleReactValidator from "simple-react-validator";
 
 class Signup extends Component {
@@ -46,13 +47,13 @@ class Signup extends Component {
     if (this.validator.allValid()) {
       let data = {
         FirstName: this.state.FirstName,
-        Lastname: this.state.LastName,
+        LastName: this.state.LastName,
         UserLogin: {
           EmailId: this.state.UserLogin.EmailId,
           password: this.state.UserLogin.password
         }
       };
-      this.props.userRegister(data);
+      this.props.UserRegister(data);
 
       console.log(data);
     } else {
@@ -184,4 +185,4 @@ const mapStateToProps = state => {
   console.log(state);
   return state;
 };
-export default connect(mapStateToProps, { userRegister })(Signup);
+export default connect(mapStateToProps, { UserRegister })(Signup);

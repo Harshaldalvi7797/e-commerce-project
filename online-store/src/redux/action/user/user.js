@@ -1,9 +1,9 @@
 import { USER_REGISTER } from "./user.type";
-import {} from "../../api/user/register";
-export const userRegister = item => {
+import { userRegister } from "../../api/user/register";
+export const UserRegister = item => {
   return async dispatch => {
-    let sendData = userRegister(item);
+    let sendData = await userRegister(item);
     console.log(sendData);
-    // dispatch({ type: USER_REGISTER, payload: sendData.data });
+    dispatch({ type: USER_REGISTER, payload: sendData.data });
   };
 };

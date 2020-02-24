@@ -2,7 +2,7 @@ import axios from "axios";
 const REGISTER_ENDPOINT = "http://localhost:4600/api/createuser";
 let config = {
   headers: {
-    "content-type": "application/json"
+    "Content-type": "application/json"
   }
 };
 
