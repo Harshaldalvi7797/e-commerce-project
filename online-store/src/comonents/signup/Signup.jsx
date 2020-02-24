@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import "./signup.css";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 import { connect } from "react-redux";
 import { UserRegister } from "../../redux/action/user/user";
 import SimpleReactValidator from "simple-react-validator";
@@ -105,6 +105,14 @@ class Signup extends Component {
           <div className="col-md-6 login-form-2">
             <div className="login-logo"></div>
             <h3>SignUp here</h3>
+
+            {/* error */}
+            {this.props.error ? (
+              <div className="alert alert-danger">
+                {this.props.error.response.data.message}
+              </div>
+            ) : null}
+
             <form onSubmit={this.handleFormSubmit}>
               <div className="form-group">
                 <input
@@ -181,8 +189,10 @@ class Signup extends Component {
     );
   }
 }
+
 const mapStateToProps = state => {
-  console.log(state);
-  return state;
+  console.log(state.registerRed, "maptostate");
+  return { error: state.registerRed.message_error };
+  // return state;
 };
 export default connect(mapStateToProps, { UserRegister })(Signup);
