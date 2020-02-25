@@ -70,6 +70,7 @@ class Login extends Component {
                     {this.props.error ? (
                       <div className="alert alert-danger">
                         {this.props.error.response.data.message}
+                        {/* {this.props.error.message_error} */}
                       </div>
                     ) : null}
 
@@ -120,7 +121,7 @@ class Login extends Component {
                         >
                           Login
                         </button>
-                        {/* {this.props.spin ? <Loader /> : null} */}
+                        {this.props.user.loggedin ? <Loader /> : null}
                       </div>
                       <div className="col-md-12 ">
                         <div className="login-or">
@@ -158,7 +159,11 @@ class Login extends Component {
 }
 const mapStateToProps = state => {
   console.log(state, "mo");
-  return { error: state.login.message_error, spin: state };
+  // return { error: state.login.message_error, spin: state };
+  // return { error: state.login };
+  return { error: state.login.message_error, user: state.login };
+
+  // return { user: state.login };
 };
 
 export default connect(mapStateToProps, { LoginUser })(Login);
