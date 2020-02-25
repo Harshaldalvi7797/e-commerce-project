@@ -1,6 +1,15 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { ProductInfo } from "../../redux/action/products/products";
 
 class Home extends Component {
+  constructor(props) {
+    // @ts-ignore
+    super(props);
+  }
+  componentDidMount() {
+    this.props.ProductInfo();
+  }
   render() {
     return (
       <div className="container">
@@ -9,4 +18,8 @@ class Home extends Component {
     );
   }
 }
-export default Home;
+const mapStateToProps = state => {
+  console.log(state);
+  return state;
+};
+export default connect(mapStateToProps, { ProductInfo })(Home);
