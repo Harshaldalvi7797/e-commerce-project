@@ -11,6 +11,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <Navigation />
+
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/home" exact component={Home} />

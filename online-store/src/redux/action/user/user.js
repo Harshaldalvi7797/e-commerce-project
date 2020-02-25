@@ -1,4 +1,4 @@
-import { USER_REGISTER, ERROR, LOGIN_USER } from "./user.type";
+import { USER_REGISTER, ERROR, LOGIN_USER, LOGGED_USER } from "./user.type";
 import { userRegister, Login } from "../../api/user/register";
 import { history } from "../../../helpers/history/index";
 
@@ -42,9 +42,12 @@ export const UserRegister = item => {
   };
 };
 
-export const LoggedInUser = () => {
+export const UserLogin = () => {
   return async dispatch => {
     try {
+      let fetchlogindata = await UserLogin();
+      // @ts-ignore
+      dispatch({ type: LOGGED_USER, payload: fetchlogindata.data });
     } catch (ex) {
       dispatch({ type: ERROR, payload: ex });
     }
