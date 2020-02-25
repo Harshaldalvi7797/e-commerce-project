@@ -1,4 +1,10 @@
-import { USER_REGISTER, ERROR, LOGIN_USER, LOGGED_USER } from "./user.type";
+import {
+  USER_REGISTER,
+  ERROR,
+  LOGIN_USER,
+  LOGGED_USER,
+  PRE_LOADER
+} from "./user.type";
 import { userRegister, Login } from "../../api/user/register";
 import { history } from "../../../helpers/history/index";
 
@@ -9,6 +15,8 @@ export const LoginUser = item => {
       console.log(user);
       localStorage.setItem("currentuser", JSON.stringify(user));
       dispatch({ type: LOGIN_USER, payload: user.data });
+      alert("Login Done");
+      dispatch({ type: PRE_LOADER });
       history.push("/home");
       window.location.reload();
     } catch (ex) {

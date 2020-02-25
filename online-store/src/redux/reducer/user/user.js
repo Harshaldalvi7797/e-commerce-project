@@ -1,12 +1,28 @@
-import { USER_REGISTER, ERROR, LOGIN_USER } from "../../action/user/user.type";
+import {
+  USER_REGISTER,
+  ERROR,
+  LOGIN_USER,
+  PRE_LOADER,
+  LOGGED_USER
+} from "../../action/user/user.type";
+import { act } from "react-dom/test-utils";
 
-export const LoginUser = (state = {}, action) => {
-  // console.log(action);
+const INITIAL_STATE = () => {
+  let user = JSON.parse(localStorage.getItem("currentuser"));
+  return user ? { loggedin: true, user } : {};
+};
+
+export const LoginUser = (state = INITIAL_STATE(), action) => {
+  console.log(action);
   switch (action.type) {
     case LOGIN_USER:
-      return { ...state, user: action.payload };
+      return { ...state, user: action.payload, loggedin: false };
     case ERROR:
-      return { message_error: action.payload };
+      return { message_error: action.payload, loggedin: false };
+    case PRE_LOADER:
+      return { loggedin: true };
+    case LOGGED_USER:
+      return { currentuser: action.payload, loggedin: false };
 
     default:
       return state;

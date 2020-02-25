@@ -5,7 +5,7 @@ class Loader extends Component {
   render() {
     return (
       <div className="container">
-        <div style={{ marginLeft: "190px" }}>
+        <div style={{ marginLeft: "90px" }}>
           <Spinner animation="border" variant="primary" />
           <Spinner animation="border" variant="secondary" />
           <Spinner animation="border" variant="success" />

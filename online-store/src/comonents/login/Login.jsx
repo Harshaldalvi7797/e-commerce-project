@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { LoginUser } from "../../redux/action/user/user";
 import SimpleReactValidator from "simple-react-validator";
+import Loader from "../spinner/spinner";
 
 class Login extends Component {
   constructor() {
@@ -53,6 +54,9 @@ class Login extends Component {
   };
 
   render() {
+    // if (this.props.error == null) {
+    //   return <Loader />;
+    // }
     return (
       <div className="container">
         <div className="row">
@@ -116,6 +120,7 @@ class Login extends Component {
                         >
                           Login
                         </button>
+                        {/* {this.props.spin ? <Loader /> : null} */}
                       </div>
                       <div className="col-md-12 ">
                         <div className="login-or">
@@ -152,8 +157,8 @@ class Login extends Component {
   }
 }
 const mapStateToProps = state => {
-  console.log(state.login, "mo");
-  return { error: state.login.message_error };
+  console.log(state, "mo");
+  return { error: state.login.message_error, spin: state };
 };
 
 export default connect(mapStateToProps, { LoginUser })(Login);
