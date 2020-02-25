@@ -5,6 +5,15 @@ let User = require("../../dbModel/user");
 let Joi = require("@hapi/joi");
 let bcrypt = require("bcrypt");
 let config = require("config");
+let auth = require("../../routes/middleware/userAuth");
+
+router.get("/me", auth, async (req, res) => {
+  // @ts-ignore
+  let data = await User.userModel
+    .findById(req.user._id)
+    .select("-UserLogin.password -isAdmin");
+  res.send(data);
+});
 
 router.post("/login", async (req, res) => {
   let { error } = AuthValidation(req.body);

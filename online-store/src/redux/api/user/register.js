@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Header } from "../../../helpers/history/header";
 const REGISTER_ENDPOINT = "http://localhost:4600/api/createuser";
 const LOGIN_ENDPOINT = "http://localhost:4600/api/userlogin/login";
 let config = {
@@ -14,3 +15,5 @@ export const userRegister = data => {
 export const Login = data => {
   return axios.post(LOGIN_ENDPOINT, JSON.stringify(data), config);
 };
+
+export const LoggedInUser = data => {};

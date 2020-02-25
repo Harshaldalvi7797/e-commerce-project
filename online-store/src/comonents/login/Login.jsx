@@ -65,8 +65,7 @@ class Login extends Component {
 
                     {this.props.error ? (
                       <div className="alert alert-danger">
-                        hii
-                        {this.props.error}
+                        {this.props.error.response.data.message}
                       </div>
                     ) : null}
 
