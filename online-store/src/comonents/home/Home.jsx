@@ -23,7 +23,7 @@ class Home extends Component {
 
     return (
       <React.Fragment>
-        <Product products={this.props.productdata} />
+        <Product products={this.props.productdata} {...this.props} />
       </React.Fragment>
     );
   }
