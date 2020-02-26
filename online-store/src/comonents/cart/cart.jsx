@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { AddToCart } from "../../redux/action/products/products";
 class Cart extends Component {
   render() {
     return (
@@ -9,4 +10,8 @@ class Cart extends Component {
     );
   }
 }
-export default Cart;
+const mapStateToProps = state => {
+  console.log(state);
+  return state;
+};
+export default connect(mapStateToProps, { AddToCart })(Cart);

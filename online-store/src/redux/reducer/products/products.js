@@ -2,8 +2,10 @@ import {
   FETCH_PRODUCT_DATA,
   LOADING,
   SHOW_ERROR,
-  FETCH_PRODUCT_BYID
+  FETCH_PRODUCT_BYID,
+  ADD_CART
 } from "../../action/products/product.type";
+import { CartUtility } from "./cart.utility";
 
 export const ShowProducts = (state = {}, action) => {
   switch (action.type) {
@@ -28,6 +30,25 @@ export const ShowProductById = (state = {}, action) => {
       return { ...state, item: action.payload, loading: false };
     case SHOW_ERROR:
       return { error: action.payload, loading: false };
+    default:
+      return state;
+  }
+};
+const INITIAL_STATE = {
+  loading: true,
+  items: []
+};
+
+export const AddToCart = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case LOADING:
+      return { ...state, loading: state.loading };
+    case ADD_CART:
+      return {
+        ...state,
+        loading: false,
+        data: CartUtility(state.items, action.payload)
+      };
     default:
       return state;
   }

@@ -1,12 +1,17 @@
 import { combineReducers } from "redux";
 import { registerUser, LoginUser } from "../reducer/user/user";
-import { ShowProducts, ShowProductById } from "../reducer/products/products";
+import {
+  ShowProducts,
+  ShowProductById,
+  AddToCart
+} from "../reducer/products/products";
 
 const reducers = combineReducers({
   registerRed: registerUser,
   login: LoginUser,
   details: ShowProducts,
-  shopProducts: ShowProductById
+  shopProducts: ShowProductById,
+  cart: AddToCart
 });
 
 export default reducers;
