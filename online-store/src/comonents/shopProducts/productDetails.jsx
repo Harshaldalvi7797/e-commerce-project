@@ -28,24 +28,24 @@ class ProductDetails extends Component {
         <h1>Product Details</h1>
 
         <div className="row">
-          <div className="col-md-4">
+          {/* <div className="col-md-4">
             <Card style={{ width: "18rem", paddingLeft: "25px" }}>
               <Card.Img variant="top" />
               <Card.Body>
                 <Card.Title> {this.props.product.data.name}</Card.Title>
                 <Card.Text>Price </Card.Text>
                 <Card.Text>Offer Price </Card.Text>
-                {/* <Button
+                <Button
                   variant="primary"
                   onClick={() =>
                     this.props.history.push(`/product/${item._id}`)
                   }
                 >
                   Go somewhere
-                </Button> */}
+                </Button>
               </Card.Body>
             </Card>
-          </div>
+          </div> */}
         </div>
 
         <div className="card">
@@ -54,9 +54,9 @@ class ProductDetails extends Component {
               <div className="preview col-md-6">
                 <div className="preview-pic tab-content">
                   <div className="tab-pane active" id="pic-1">
-                    <img src="http://placekitten.com/400/252" />
+                    <img src={this.props.product.data.image} />
                   </div>
-                  <div className="tab-pane" id="pic-2">
+                  {/* <div className="tab-pane" id="pic-2">
                     <img src="http://placekitten.com/400/252" />
                   </div>
                   <div className="tab-pane" id="pic-3">
@@ -67,7 +67,7 @@ class ProductDetails extends Component {
                   </div>
                   <div className="tab-pane" id="pic-5">
                     <img src="http://placekitten.com/400/252" />
-                  </div>
+                  </div> */}
                 </div>
                 {/* <ul class="preview-thumbnail nav nav-tabs">
                   <li class="active">
@@ -98,7 +98,10 @@ class ProductDetails extends Component {
                 </ul> */}
               </div>
               <div className="details col-md-6">
-                <h3 className="product-title">men's shoes fashion</h3>
+                <h3 className="product-title">
+                  {" "}
+                  {this.props.product.data.name}
+                </h3>
                 <div className="rating">
                   <div className="stars">
                     <span className="fa fa-star checked"></span>
@@ -110,18 +113,20 @@ class ProductDetails extends Component {
                   <span className="review-no">41 reviews</span>
                 </div>
                 <p class="product-description">
-                  Suspendisse quos? Tempus cras iure temporibus? Eu laudantium
-                  cubilia sem sem! Repudiandae et! Massa senectus enim minim
-                  sociosqu delectus posuere.
+                  {this.props.product.data.description}
                 </p>
                 <h4 className="price">
-                  current price: <span>$180</span>
+                  Original price: <span> {this.props.product.data.price}</span>
+                </h4>
+                <h4 className="price">
+                  current price:{" "}
+                  <span> {this.props.product.data.offerPrice}</span>
                 </h4>
                 <p class="vote">
                   <strong>91%</strong> of buyers enjoyed this product!{" "}
                   <strong>(87 votes)</strong>
                 </p>
-                <h5 className="sizes">
+                {/* <h5 className="sizes">
                   sizes:
                   <span className="size" data-toggle="tooltip" title="small">
                     s
@@ -139,8 +144,8 @@ class ProductDetails extends Component {
                   >
                     xl
                   </span>
-                </h5>
-                <h5 className="colors">
+                </h5> */}
+                {/* <h5 className="colors">
                   colors:
                   <span
                     className="color orange not-available"
@@ -149,7 +154,7 @@ class ProductDetails extends Component {
                   ></span>
                   <span className="color green"></span>
                   <span className="color blue"></span>
-                </h5>
+                </h5> */}
                 <div class="action">
                   <button className="add-to-cart btn btn-default" type="button">
                     add to cart
