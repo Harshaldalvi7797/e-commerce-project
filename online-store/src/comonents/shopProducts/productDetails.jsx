@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchProductById } from "../../redux/action/products/products";
+import {
+  fetchProductById,
+  AddToCart
+} from "../../redux/action/products/products";
 import { Card, Button } from "react-bootstrap";
 import Loading from "../spinner/spinner";
 import "./shop.css";
@@ -15,6 +18,9 @@ class ProductDetails extends Component {
   componentDidMount() {
     this.props.fetchProductById(this.paraId);
   }
+  AddCart = id => {
+    this.props.AddToCart(id);
+  };
   render() {
     console.log(this.paraId);
     if (this.props.loading) {
@@ -112,7 +118,7 @@ class ProductDetails extends Component {
                   </div>
                   <span className="review-no">41 reviews</span>
                 </div>
-                <p class="product-description">
+                <p className="product-description">
                   {this.props.product.data.description}
                 </p>
                 <h4 className="price">
@@ -122,7 +128,7 @@ class ProductDetails extends Component {
                   current price:{" "}
                   <span> {this.props.product.data.offerPrice}</span>
                 </h4>
-                <p class="vote">
+                <p className="vote">
                   <strong>91%</strong> of buyers enjoyed this product!{" "}
                   <strong>(87 votes)</strong>
                 </p>
@@ -155,13 +161,19 @@ class ProductDetails extends Component {
                   <span className="color green"></span>
                   <span className="color blue"></span>
                 </h5> */}
-                <div class="action">
-                  <button className="add-to-cart btn btn-default" type="button">
+                <div className="action">
+                  {/* <button className="add-to-cart btn btn-default" type="button">
                     add to cart
                   </button>
                   <button className="like btn btn-default" type="button">
                     className{" "}
-                  </button>
+                  </button> */}
+                  <Button
+                    variant="primary"
+                    onClick={() => this.AddCart(this.props.product.data._id)}
+                  >
+                    Add To Cart
+                  </Button>
                 </div>
               </div>
             </div>
@@ -178,4 +190,6 @@ const mapStateToProps = state => {
     loading: state.shopProducts.loading
   };
 };
-export default connect(mapStateToProps, { fetchProductById })(ProductDetails);
+export default connect(mapStateToProps, { fetchProductById, AddToCart })(
+  ProductDetails
+);
