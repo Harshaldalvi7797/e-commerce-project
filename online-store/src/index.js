@@ -10,11 +10,17 @@ import * as serviceWorker from "./serviceWorker";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 import reducers from "./redux/store";
+import { persistStore, persistReducer } from "redux-persist";
+import persistConfig from "./redux/store/index";
+import { PersistGate } from "redux-persist/integration/react";
+const persistReducers = persistReducer(persistConfig, persistReducer);
 
 ReactDOM.render(
-  <Provider store={createStore(reducers, applyMiddleware(thunk))}>
+  <Provider store={createStore(persistReducers, applyMiddleware(thunk))}>
     <BrowserRouter>
-      <App />
+      <PersistGate persistor={persistStore}>
+        <App />
+      </PersistGate>
     </BrowserRouter>
   </Provider>,
 

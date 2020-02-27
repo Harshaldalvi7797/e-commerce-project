@@ -1,5 +1,7 @@
 import { combineReducers } from "redux";
 import { registerUser, LoginUser } from "../reducer/user/user";
+import storage from "redux-persist/lib/storage";
+
 import {
   ShowProducts,
   ShowProductById,
@@ -15,3 +17,8 @@ const reducers = combineReducers({
 });
 
 export default reducers;
+export const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: [cart]
+};
