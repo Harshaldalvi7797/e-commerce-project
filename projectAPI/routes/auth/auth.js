@@ -10,6 +10,7 @@ let auth = require("../../routes/middleware/userAuth");
 router.get("/me", auth, async (req, res) => {
   // @ts-ignore
   let data = await User.userModel
+    // @ts-ignore
     .findById(req.user._id)
     .select("-UserLogin.password -isAdmin");
   res.send(data);

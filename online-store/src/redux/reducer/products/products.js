@@ -2,9 +2,7 @@ import {
   FETCH_PRODUCT_DATA,
   LOADING,
   SHOW_ERROR,
-  FETCH_PRODUCT_BYID,
-  ADD_CART,
-  REMOVE_CART
+  FETCH_PRODUCT_BYID
 } from "../../action/products/product.type";
 import { CartUtility } from "./cart.utility";
 
@@ -40,23 +38,23 @@ const INITIAL_STATE = {
   items: []
 };
 
-export const AddToCart = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case LOADING:
-      return { ...state, loading: state.loading };
-    case ADD_CART:
-      return {
-        ...state,
-        loading: false,
-        data: CartUtility(state.items, action.payload)
-      };
-    case REMOVE_CART:
-      return {
-        ...state,
-        loading: false,
-        items: state.item.filter(data => data.data._id !== action.payload._id)
-      };
-    default:
-      return state;
-  }
-};
+// export const AddToCart = (state = INITIAL_STATE, action) => {
+//   switch (action.type) {
+//     case LOADING:
+//       return { ...state, loading: state.loading };
+//     case ADD_CART:
+//       return {
+//         ...state,
+//         loading: false,
+//         data: CartUtility(state.items, action.payload)
+//       };
+//     case REMOVE_CART:
+//       return {
+//         ...state,
+//         loading: false,
+//         items: state.item.filter(data => data.data._id !== action.payload._id)
+//       };
+//     default:
+//       return state;
+//   }
+// };

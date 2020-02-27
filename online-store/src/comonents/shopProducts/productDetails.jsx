@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  fetchProductById,
-  AddToCart
-} from "../../redux/action/products/products";
+import { fetchProductById } from "../../redux/action/products/products";
 import { Card, Button } from "react-bootstrap";
 import Loading from "../spinner/spinner";
 import "./shop.css";
@@ -18,9 +15,9 @@ class ProductDetails extends Component {
   componentDidMount() {
     this.props.fetchProductById(this.paraId);
   }
-  AddCart = id => {
-    this.props.AddToCart(id);
-  };
+  // AddCart = id => {
+  //   this.props.AddToCart(id);
+  // };
   render() {
     console.log(this.paraId);
     if (this.props.loading) {
@@ -168,12 +165,12 @@ class ProductDetails extends Component {
                   <button className="like btn btn-default" type="button">
                     className{" "}
                   </button> */}
-                  <Button
+                  {/* <Button
                     variant="primary"
                     onClick={() => this.AddCart(this.props.product.data._id)}
                   >
                     Add To Cart
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </div>
@@ -190,6 +187,4 @@ const mapStateToProps = state => {
     loading: state.shopProducts.loading
   };
 };
-export default connect(mapStateToProps, { fetchProductById, AddToCart })(
-  ProductDetails
-);
+export default connect(mapStateToProps, { fetchProductById })(ProductDetails);
