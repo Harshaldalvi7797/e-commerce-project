@@ -3,7 +3,8 @@ import {
   LOADING,
   SHOW_ERROR,
   FETCH_PRODUCT_BYID,
-  ADD_CART
+  ADD_CART,
+  REMOVE_CART
 } from "../../action/products/product.type";
 import { CartUtility } from "./cart.utility";
 
@@ -48,6 +49,12 @@ export const AddToCart = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         data: CartUtility(state.items, action.payload)
+      };
+    case REMOVE_CART:
+      return {
+        ...state,
+        loading: false,
+        items: state.item.filter(data => data.data._id !== action.payload._id)
       };
     default:
       return state;

@@ -45,11 +45,12 @@ export const AddToCart = id => {
     try {
       dispatch({ type: LOADING });
       let response = await AddtoCart(id);
+      console.log(response);
       setTimeout(() => {
         dispatch({ type: ADD_CART, payload: response.data });
 
         history.push("/cart");
-        window.location.reload();
+        // window.location.reload();
       }, 1000);
     } catch (ex) {
       dispatch({ type: SHOW_ERROR, payload: ex.response.data });
