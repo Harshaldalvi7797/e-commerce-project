@@ -1,4 +1,5 @@
 export const CartUtility = (oldstate, nextstate) => {
+  console.log(oldstate);
   const existingcartitems = oldstate.find(
     data => data.data._id === nextstate.data._id
   );

@@ -22,7 +22,7 @@ class App extends Component {
             <Route path="/signup" exact component={Signup} />
             <Route path="/login" exact component={Login} />
             <Route path="/product/:id" exact component={ProductDetails} />
-            {/* <Route path="/cart" exact component={Cart} /> */}
+            <Route path="/cart" exact component={Cart} />
           </Switch>
         </Router>
       </React.Fragment>

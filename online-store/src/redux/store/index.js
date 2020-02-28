@@ -4,21 +4,21 @@ import storage from "redux-persist/lib/storage";
 
 import {
   ShowProducts,
-  ShowProductById
-  // AddToCart
+  ShowProductById,
+  AddToCart
 } from "../reducer/products/products";
 
 const reducers = combineReducers({
   registerRed: registerUser,
   login: LoginUser,
   details: ShowProducts,
-  shopProducts: ShowProductById
-  // cart: AddToCart
+  shopProducts: ShowProductById,
+  cart: AddToCart
 });
 
 export default reducers;
-// export const persistConfig = {
-//   key: "root",
-//   storage,
-//   whitelist: ["cart"]
-// };
+export const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["cart"]
+};
