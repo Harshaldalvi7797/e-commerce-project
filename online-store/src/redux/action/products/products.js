@@ -51,7 +51,7 @@ export const AddToCart = id => {
         dispatch({ type: ADD_CART, payload: response.data });
 
         history.push("/cart");
-        //window.location.reload();
+        window.location.reload();
       }, 1000);
     } catch (ex) {
       dispatch({ type: SHOW_ERROR, payload: ex.response.data });

@@ -4,6 +4,7 @@ import { ProductInfo } from "../../redux/action/products/products";
 import Loader from "../spinner/spinner";
 import { Card, Button } from "react-bootstrap";
 import Product from "../pages/products/products";
+import ControlledCarousel from "../slider/slider";
 
 class Home extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class Home extends Component {
 
     return (
       <React.Fragment>
+        <ControlledCarousel />
         <Product products={this.props.productdata} {...this.props} />
       </React.Fragment>
     );

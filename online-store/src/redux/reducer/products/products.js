@@ -48,15 +48,18 @@ export const AddToCart = (state = INITIAL_STATE, action) => {
     case ADD_CART:
       return {
         ...state,
+        //data: action.payload.data,
 
-        data: CartUtility(state.data, action.payload),
+        items: CartUtility(state.items, action.payload),
         loading: false
       };
     case REMOVE_CART:
       return {
         ...state,
         loading: false,
-        items: state.item.filter(data => data.data._id !== action.payload._id)
+        items: state.items.filter(
+          data => data.data._id !== action.payload.data._id
+        )
       };
     default:
       return state;

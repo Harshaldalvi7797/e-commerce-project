@@ -7,13 +7,15 @@ import {
   ShowProductById,
   AddToCart
 } from "../reducer/products/products";
+import { ContactSend } from "../reducer/contact/contact";
 
 const reducers = combineReducers({
   registerRed: registerUser,
   login: LoginUser,
   details: ShowProducts,
   shopProducts: ShowProductById,
-  cart: AddToCart
+  cart: AddToCart,
+  contact: ContactSend
 });
 
 export default reducers;

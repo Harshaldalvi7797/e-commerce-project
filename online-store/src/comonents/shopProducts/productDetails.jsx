@@ -7,7 +7,7 @@ import {
 import { Card, Button } from "react-bootstrap";
 import Loading from "../spinner/spinner";
 import "./shop.css";
-
+// import { history } from "../../helpers/history/index";
 class ProductDetails extends Component {
   paraId;
   constructor(props) {
@@ -20,6 +20,7 @@ class ProductDetails extends Component {
   }
   AddCart = id => {
     this.props.AddToCart(id);
+    //this.props.history.push("/cart");
   };
   render() {
     console.log(this.paraId);
