@@ -124,7 +124,7 @@ class Cart extends Component {
                     // )) // ) : ( // <h1>Waiting for response......</h1>
                     // )}
                   ))}
-                  <tr>
+                  {/* <tr>
                     <td>   </td>
                     <td>   </td>
                     <td>   </td>
@@ -136,16 +136,27 @@ class Cart extends Component {
                         <strong>{this.props.total}</strong>
                       </h3>
                     </td>
-                  </tr>
+                  </tr> */}
                   <tr>
                     <td>   </td>
                     <td>   </td>
-                    <td>   </td>
                     <td>
-                      <button type="button" className="btn btn-default">
+                      <button
+                        type="button"
+                        className="btn btn-default"
+                        style={{ backgroundColor: "red" }}
+                        onClick={() => this.props.history.push("/home")}
+                      >
                         <span className="glyphicon glyphicon-shopping-cart"></span>{" "}
                         Continue Shopping
                       </button>
+                    </td>
+                    <td></td>
+                    <td>
+                      {" "}
+                      <h3>
+                        <strong>{this.props.total}</strong>
+                      </h3>
                     </td>
                     <td>
                       <button type="button" className="btn btn-success">

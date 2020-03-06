@@ -74,7 +74,7 @@ router.get("/fetchproduct/:id", async (req, res) => {
   if (!product) {
     return res.status(404).send({ message: "Invalid product Id" });
   }
-  res.send({ message: "prodtct get", data: product });
+  res.send({ message: "product get", data: product });
 });
 
 //delete

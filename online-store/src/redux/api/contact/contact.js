@@ -7,6 +7,6 @@ let config = {
   }
 };
 
-export const Contact = () => {
-  return axios.post(CONTACT_ENDPOINT, config);
+export const Contact = data => {
+  return axios.post(CONTACT_ENDPOINT, JSON.stringify(data), config);
 };

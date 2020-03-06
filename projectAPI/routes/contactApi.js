@@ -38,8 +38,8 @@ router.post("/contact", async (req, res) => {
     from: '"Harsh App:sweat_smile:" <dalviharshal7797@gmail.com>', // sender address
     // @ts-ignore
     to: contact.email, // list of receivers
-    subject: "Reset Your Password", // Subject line:smile:
-    text: "Thanks for Contact Us" // plain text body
+    subject: "Thanks for contact", // Subject line:smile:
+    text: "We are here for you" // plain text body
   };
 
   // send mail with defined transport object
