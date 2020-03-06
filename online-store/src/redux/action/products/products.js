@@ -3,7 +3,10 @@ import {
   LOADING,
   SHOW_ERROR,
   FETCH_PRODUCT_BYID,
-  ADD_CART
+  ADD_CART,
+  REMOVE_CART,
+  ADD_QUENTITY,
+  REMOVE_QUENTITY
 } from "./product.type";
 import {
   fetchProducts,
@@ -45,8 +48,9 @@ export const AddToCart = id => {
     try {
       dispatch({ type: LOADING });
       let response = await fetchProductsId(id);
-      //let response = await AddtoCart(id);
       console.log(response);
+      //let response = await AddtoCart(id);
+
       setTimeout(() => {
         dispatch({ type: ADD_CART, payload: response.data });
 
@@ -58,20 +62,78 @@ export const AddToCart = id => {
     }
   };
 };
-
 export const RemoveCart = id => {
+  console.log(id);
   return async dispatch => {
     try {
       dispatch({ type: LOADING });
       let response = await fetchProductsId(id);
       // let response = await AddtoCart(id);
       setTimeout(() => {
-        dispatch({ type: ADD_CART, payload: response.data });
+        dispatch({ type: REMOVE_CART, payload: response.data });
 
         history.push("/cart");
+        window.location.reload();
       }, 1000);
     } catch (ex) {
-      dispatch({ type: SHOW_ERROR, payload: ex.response.data });
+      // dispatch({ type: SHOW_ERROR, payload: ex.response.data });
     }
   };
 };
+
+export const AddQuentity = data => {
+  console.log(data);
+  return async dispatch => {
+    try {
+      dispatch({ type: LOADING });
+      // let response = await fetchProductsId(id);
+      // let response = await AddtoCart(id);
+      setTimeout(() => {
+        dispatch({ type: ADD_QUENTITY, payload: data });
+
+        history.push("/cart");
+        window.location.reload();
+      }, 1000);
+    } catch (ex) {
+      // dispatch({ type: SHOW_ERROR, payload: ex.response.data });
+    }
+  };
+};
+
+export const RemoveQuentity = data => {
+  console.log(data);
+  return async dispatch => {
+    try {
+      dispatch({ type: LOADING });
+
+      setTimeout(() => {
+        dispatch({ type: REMOVE_QUENTITY, payload: data });
+
+        history.push("/cart");
+        window.location.reload();
+      }, 1000);
+    } catch (ex) {
+      // dispatch({ type: SHOW_ERROR, payload: ex.response.data });
+    }
+  };
+};
+
+// export const RemoveCart = id => {
+//   // console.log(id);
+//   return async dispatch => {
+//     try {
+//       dispatch({ type: LOADING });
+//       let response = await fetchProductsId(id);
+//       console.log(id);
+//       //console.log(response.data);
+//       // let response = await AddtoCart(id);
+//       setTimeout(() => {
+//         dispatch({ type: ADD_CART, payload: response.data });
+
+//         history.push("/cart");
+//       }, 1000);
+//     } catch (ex) {
+//       dispatch({ type: SHOW_ERROR, payload: ex.response.data });
+//     }
+//   };
+// };

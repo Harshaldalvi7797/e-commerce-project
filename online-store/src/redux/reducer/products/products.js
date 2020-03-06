@@ -4,9 +4,15 @@ import {
   SHOW_ERROR,
   FETCH_PRODUCT_BYID,
   ADD_CART,
-  REMOVE_CART
+  REMOVE_CART,
+  ADD_QUENTITY,
+  REMOVE_QUENTITY
 } from "../../action/products/product.type";
-import { CartUtility } from "./cart.utility";
+import {
+  CartUtility,
+  AddQuentityUtility,
+  RemoveQuentityUtility
+} from "./cart.utility";
 
 export const ShowProducts = (state = {}, action) => {
   switch (action.type) {
@@ -36,12 +42,13 @@ export const ShowProductById = (state = {}, action) => {
   }
 };
 const INITIAL_STATE = {
-  loading: true,
+  // loading: true,
   items: []
 };
 
 export const AddToCart = (state = INITIAL_STATE, action) => {
-  console.log(action);
+  //console.log(action);
+  console.log(state.items, action);
   switch (action.type) {
     case LOADING:
       return { ...state, loading: state.loading };
@@ -53,13 +60,29 @@ export const AddToCart = (state = INITIAL_STATE, action) => {
         items: CartUtility(state.items, action.payload),
         loading: false
       };
+
     case REMOVE_CART:
       return {
         ...state,
-        loading: false,
+
         items: state.items.filter(
           data => data.data._id !== action.payload.data._id
-        )
+        ),
+        loading: false
+      };
+
+    case ADD_QUENTITY:
+      return {
+        ...state,
+        loading: false,
+        addquentity: AddQuentityUtility(state.items, action.payload)
+      };
+
+    case REMOVE_QUENTITY:
+      return {
+        ...state,
+        loading: false,
+        removequentity: RemoveQuentityUtility(state.items, action.payload)
       };
     default:
       return state;

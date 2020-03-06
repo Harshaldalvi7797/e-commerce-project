@@ -55,7 +55,7 @@ router.post("/addproduct", uploads.single("image"), async (req, res) => {
 
 router.get("/fetchproduct", async (req, res) => {
   let data = await Product.find();
-  //let data = await Product.find({ category: "electronics" });
+  //let data = await Product.find({ category: "req.params.name" });
   res.send({ d: data });
 });
 
