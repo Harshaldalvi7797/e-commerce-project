@@ -42,7 +42,7 @@ router.post("/addproduct", uploads.single("image"), async (req, res) => {
     isAvailable: req.body.isAvailable,
     isTodayOffer: req.body.isTodayOffer,
     category: req.body.category,
-    subCategory: req.body.subCategory,
+    subcategory: req.body.subcategory,
     isAdmin: req.body.isAdmin,
     recordDate: req.body.recordDate,
     updateDate: req.body.updateDate
@@ -59,12 +59,19 @@ router.get("/fetchproduct", async (req, res) => {
   res.send({ d: data });
 });
 
-// router.get("/fetchproduct/:name", async (req, res) => {
-//   let product = await Product.find(req.params.category);
+router.get("/fetchproducts/:category", async (req, res) => {
+  let data = await Product.find({ category: req.params.category });
+  console.log(data);
+  //let data = await Product.find({ category: "req.params.name" });
+  res.send({ d: data });
+});
+
+// router.get("/fetchproduct/:category", async (req, res) => {
+//   let product = await Product.find();
 //   if (!product) {
 //     return res.status(404).send({ message: "Invalid product Id" });
 //   }
-//   res.send({ message: "prodtct get", data: product });
+//   res.send({ message: "product get", data: product });
 // });
 
 //Fetch product by id

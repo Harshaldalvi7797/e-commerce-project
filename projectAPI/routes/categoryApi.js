@@ -10,10 +10,10 @@ router.post("/subcategory", async (req, res) => {
   res.send({ message: "subcategory addedd successfully", d: data });
 });
 
-router.get("fetchcategory/:name", async (req, res) => {
-  let data = await Category.find(req.params.name);
-  res.send({ message: "category  get", data });
-});
+// router.get("fetchcategory/:name", async (req, res) => {
+//   let data = await Category.find(req.params.name);
+//   res.send({ message: "category  get", data });
+// });
 
 router.post("/category", async (req, res) => {
   let C = await Category.subCategory.findById(req.body.subCategoryId);
