@@ -6,7 +6,8 @@ import {
   ADD_CART,
   REMOVE_CART,
   ADD_QUENTITY,
-  REMOVE_QUENTITY
+  REMOVE_QUENTITY,
+  FETCH_PRODUCT_BYCATEGORY
 } from "../../action/products/product.type";
 import {
   CartUtility,
@@ -41,6 +42,22 @@ export const ShowProductById = (state = {}, action) => {
       return state;
   }
 };
+
+export const ShowProductByCategory = (state = {}, action) => {
+  console.log(state);
+  switch (action.type) {
+    case LOADING:
+      return { loading: true };
+
+    case FETCH_PRODUCT_BYCATEGORY:
+      return { ...state, item: action.payload, loading: false };
+    case SHOW_ERROR:
+      return { error: action.payload, loading: false };
+    default:
+      return state;
+  }
+};
+
 const INITIAL_STATE = {
   // loading: true,
   items: []

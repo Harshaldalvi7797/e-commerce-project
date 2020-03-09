@@ -8,6 +8,7 @@ import Login from "./comonents/login/Login";
 import Signup from "./comonents/signup/Signup";
 import ProductDetails from "./comonents/shopProducts/productDetails";
 import Contact from "./comonents/contact/contact";
+import Mobile from "./comonents/electronics/Mobile";
 
 import Cart from "./comonents/cart/cart";
 
@@ -26,6 +27,7 @@ class App extends Component {
             <Route path="/contact" exact component={Contact} />
             <Route path="/product/:id" exact component={ProductDetails} />
             <Route path="/cart" exact component={Cart} />
+            <Route path="/Categorys/:name" exact component={Mobile} />
           </Switch>
         </Router>
       </React.Fragment>

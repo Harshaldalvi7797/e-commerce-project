@@ -9,9 +9,10 @@ import {
 import { Link } from "react-router-dom";
 
 class Navigation extends Component {
-  constructor() {
+  constructor(props) {
     // @ts-ignore
-    super();
+    super(props);
+    console.log(props);
   }
   render() {
     return (
@@ -24,10 +25,17 @@ class Navigation extends Component {
               <Nav.Link as={Link} to={"/home"}>
                 Home
               </Nav.Link>
-              <Nav.Link href="#link">About Us</Nav.Link>
+              <Nav.Link as={Link} to={"/mobile"}>
+                About Us
+              </Nav.Link>
 
               <DropdownButton id="dropdown-item-button" title="Electronics">
-                <Dropdown.Item as="button">Mobile</Dropdown.Item>
+                <Dropdown.Item as={Link} to={"/Categorys/electronics"}>
+                  Mobile
+                </Dropdown.Item>
+                {/* onClick={() =>s
+                    this.props.history.push(`/product/${item._id}`)
+                  } */}
                 <Dropdown.Item as="button">Another action</Dropdown.Item>
                 <Dropdown.Item as="button">Something else</Dropdown.Item>
               </DropdownButton>

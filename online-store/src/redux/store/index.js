@@ -5,7 +5,8 @@ import storage from "redux-persist/lib/storage";
 import {
   ShowProducts,
   ShowProductById,
-  AddToCart
+  AddToCart,
+  ShowProductByCategory
 } from "../reducer/products/products";
 import { ContactSend } from "../reducer/contact/contact";
 
@@ -15,8 +16,10 @@ const reducers = combineReducers({
   details: ShowProducts,
   shopProducts: ShowProductById,
   cart: AddToCart,
-  contact: ContactSend
+  contact: ContactSend,
+  fetchproductsByCategory: ShowProductByCategory
 });
+// fetchproductsByCategory: ShowProductByCategory
 
 export default reducers;
 export const persistConfig = {

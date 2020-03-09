@@ -3,6 +3,9 @@ import { AddToCart } from "../../action/products/products";
 
 const PRODUCTS_ENDPOINT = "http://localhost:4600/api/fetchproduct";
 
+const FETCH_PRODUCT_BYCATEGORY = "http://localhost:4600/api/fetchproducts/";
+//
+
 const FETCH_PRODUCT_BYID = "http://localhost:4600/api/fetchproduct/";
 //const ADD_TO_CART = "http://localhost:4600/api/addusercart";
 const ADD_TO_CART = "http://localhost:4600/api/addcart";
@@ -22,6 +25,11 @@ export const fetchProducts = () => {
 
 export const fetchProductsId = id => {
   return axios.get(FETCH_PRODUCT_BYID + id, config);
+};
+
+export const fetchProductsCategory = category => {
+  console.log(FETCH_PRODUCT_BYCATEGORY + category);
+  return axios.get(FETCH_PRODUCT_BYCATEGORY + category, config);
 };
 
 export const AddtoCart = id => {

@@ -58,11 +58,17 @@ router.get("/fetchproduct", async (req, res) => {
   //let data = await Product.find({ category: "req.params.name" });
   res.send({ d: data });
 });
+// router.get("/fetchproducts/:category", async (req, res) => {
+//   let data = await Product.find({ category: "electronics" });
+//   console.log(data);
+
+//   res.send({ d: data });
+// });
 
 router.get("/fetchproducts/:category", async (req, res) => {
   let data = await Product.find({ category: req.params.category });
   console.log(data);
-  //let data = await Product.find({ category: "req.params.name" });
+
   res.send({ d: data });
 });
 

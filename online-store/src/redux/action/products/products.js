@@ -6,11 +6,13 @@ import {
   ADD_CART,
   REMOVE_CART,
   ADD_QUENTITY,
-  REMOVE_QUENTITY
+  REMOVE_QUENTITY,
+  FETCH_PRODUCT_BYCATEGORY
 } from "./product.type";
 import {
   fetchProducts,
   fetchProductsId,
+  fetchProductsCategory,
   AddtoCart
 } from "../../api/products/products";
 import { history } from "../../../helpers/history/index";
@@ -36,6 +38,23 @@ export const fetchProductById = id => {
       let response = await fetchProductsId(id);
       setTimeout(() => {
         dispatch({ type: FETCH_PRODUCT_BYID, payload: response.data });
+      }, 1000);
+    } catch (ex) {
+      dispatch({ type: SHOW_ERROR, payload: ex.response.data });
+    }
+  };
+};
+
+export const fetchProductByCategory = category => {
+  return async dispatch => {
+    try {
+      dispatch({ type: LOADING });
+      // let response = await fetchProducts();
+      let response = await fetchProductsCategory(category);
+      console.log("action");
+      console.log(response);
+      setTimeout(() => {
+        dispatch({ type: FETCH_PRODUCT_BYCATEGORY, payload: response });
       }, 1000);
     } catch (ex) {
       dispatch({ type: SHOW_ERROR, payload: ex.response.data });
