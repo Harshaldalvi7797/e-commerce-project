@@ -7,6 +7,8 @@ import {
   NavDropdown
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { logout } from "../../redux/action/user/user";
 
 class Navigation extends Component {
   constructor(props) {
@@ -48,56 +50,44 @@ class Navigation extends Component {
                 Contact Us
               </Nav.Link>
             </Nav>
-            <Nav>
-              <Nav.Link as={Link} to={"/signup"}>
-                SignUp
-              </Nav.Link>
-              <Nav.Link as={Link} to={"/login"}>
-                Login
-              </Nav.Link>
-            </Nav>
+            <React.Fragment>
+              {this.props.loginuser.user ? (
+                <Nav>
+                  <Nav.Link
+                    as={Link}
+                    to={"/login"}
+                    onClick={() => this.props.logout()}
+                  >
+                    Logout
+                  </Nav.Link>
+                  <i className="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                </Nav>
+              ) : (
+                <Nav>
+                  <Nav.Link as={Link} to={"/signup"}>
+                    SignUp
+                  </Nav.Link>
+                  <Nav.Link as={Link} to={"/login"}>
+                    Login
+                  </Nav.Link>
+                </Nav>
+              )}
+            </React.Fragment>
+
+            {/* <Nav.Link as={Link} to={"/login"}>
+              Login
+            </Nav.Link> */}
           </Navbar.Collapse>
         </Navbar>
-        {/* <Navbar bg="light" expand="lg" style={{ height: "50px" }}>
-          <Navbar.Brand href="#home">Your-Shop</Navbar.Brand>
-          <Navbar.Toggle
-            aria-controls="basic-navbar-nav"
-            style={{ paddingLeft: "250px" }}
-          />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <Nav.Link as={Link} to={"/home"}>
-                Home
-              </Nav.Link>
-              <Nav.Link href="#link">Products</Nav.Link>
-              <Nav.Link href="#link">Products</Nav.Link>
-              <Nav.Link href="#link">Products</Nav.Link>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-            <Nav>
-              <Nav.Link as={Link} to={"/signup"}>
-                SignUp
-              </Nav.Link>
-              <Nav.Link as={Link} to={"/login"}>
-                Login
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar> */}
       </React.Fragment>
     );
   }
 }
-export default Navigation;
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    loginuser: state.login,
+    cartdata: state.cart
+  };
+};
+export default connect(mapStateToProps, { logout })(Navigation);
