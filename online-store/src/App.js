@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import { history } from "./helpers/history/index";
 
+import PrivateRoute from "./helpers/history/private.component";
 import Navigation from "./comonents/navigation/Navigation";
 import Home from "./comonents/home/Home";
 import Login from "./comonents/login/Login";
@@ -26,7 +27,7 @@ class App extends Component {
             <Route path="/login" exact component={Login} />
             <Route path="/contact" exact component={Contact} />
             <Route path="/product/:id" exact component={ProductDetails} />
-            <Route path="/cart" exact component={Cart} />
+            <PrivateRoute path="/cart" exact component={Cart} />
             <Route path="/Categorys/:name" exact component={Mobile} />
           </Switch>
         </Router>
