@@ -5,7 +5,6 @@ import {
   PRE_LOADER,
   LOGGED_USER
 } from "../../action/user/user.type";
-import { act } from "react-dom/test-utils";
 
 const INITIAL_STATE = () => {
   let user = JSON.parse(localStorage.getItem("currentuser"));

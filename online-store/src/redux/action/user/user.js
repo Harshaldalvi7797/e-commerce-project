@@ -42,7 +42,7 @@ export const UserRegister = item => {
       dispatch({ type: USER_REGISTER, payload: sendData.data });
       alert("Registration Done");
       history.push("/login");
-      window.location.reload();
+      // window.location.reload();
     } catch (ex) {
       // console.log(ex, "action");
       dispatch({ type: ERROR, payload: ex });

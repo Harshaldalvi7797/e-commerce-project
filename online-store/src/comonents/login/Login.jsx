@@ -109,9 +109,14 @@ class Login extends Component {
                         )}
                       </div>
                       <div className="form-group">
-                        <p className="text-center">
+                        {/* <p className="text-center">
                           By signing up you accept our{" "}
                           <a href="#">Terms Of Use</a>
+                        </p> */}
+                        <p className="text-center">
+                          <Link as={Link} to={"/forget"}>
+                            Forget Password?
+                          </Link>
                         </p>
                       </div>
                       <div className="col-md-12 text-center ">

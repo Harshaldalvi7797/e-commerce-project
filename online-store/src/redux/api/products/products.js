@@ -32,6 +32,6 @@ export const fetchProductsCategory = category => {
   return axios.get(FETCH_PRODUCT_BYCATEGORY + category, config);
 };
 
-export const AddtoCart = id => {
-  return axios.get(ADD_TO_CART, config);
+export const AddtoCart = data => {
+  return axios.post(ADD_TO_CART, JSON.stringify(data), config);
 };

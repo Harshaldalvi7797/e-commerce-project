@@ -6,7 +6,7 @@ let userSchema = new mongoose.Schema({
   FirstName: { type: String, min: 3, max: 250, alphanum: true, trim: true },
   LastName: { type: String, min: 4, max: 250, alphanum: true, trim: true },
   UserLogin: {
-    EmailId: { type: String, required: true, unique: true },
+    EmailId: { type: String, unique: true },
     password: { type: String, required: true }
   },
   newsletterCheck: { type: Boolean },

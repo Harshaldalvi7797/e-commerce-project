@@ -1,0 +1,1 @@
+export const FORGET_PASSWORD = "FORGET_PASSWORD";

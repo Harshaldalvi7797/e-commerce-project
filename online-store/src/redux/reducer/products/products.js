@@ -4,11 +4,13 @@ import {
   SHOW_ERROR,
   FETCH_PRODUCT_BYID,
   ADD_CART,
+  ADD_USERCART,
   REMOVE_CART,
   ADD_QUENTITY,
   REMOVE_QUENTITY,
   FETCH_PRODUCT_BYCATEGORY
 } from "../../action/products/product.type";
+import { LOGGED_USER, LOGIN_USER } from "../../action/user/user.type";
 import {
   CartUtility,
   AddQuentityUtility,
@@ -60,6 +62,7 @@ export const ShowProductByCategory = (state = {}, action) => {
 
 const INITIAL_STATE = {
   // loading: true,
+
   items: []
 };
 
@@ -69,10 +72,14 @@ export const AddToCart = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case LOADING:
       return { ...state, loading: state.loading };
+    case LOGGED_USER:
+      return { loggedin: true, item: action.payload };
+    case ADD_USERCART:
+      return { loggedin: true, item: action.payload };
+
     case ADD_CART:
       return {
         ...state,
-        //data: action.payload.data,
 
         items: CartUtility(state.items, action.payload),
         loading: false
@@ -101,7 +108,22 @@ export const AddToCart = (state = INITIAL_STATE, action) => {
         loading: false,
         removequentity: RemoveQuentityUtility(state.items, action.payload)
       };
+    case LOGGED_USER:
+      return { loggedin: true };
+
     default:
       return state;
   }
 };
+
+// export const AddToUserCart = (state = INITIAL_STATE, action) => {
+//   console.log(state, action);
+//   switch (action.type) {
+//     case LOADING:
+//       return { ...state, loading: state.loading };
+//     case LOGGED_USER:
+//       return { loggedin: true };
+//     default:
+//       return state;
+//   }
+// };

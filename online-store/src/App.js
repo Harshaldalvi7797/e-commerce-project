@@ -12,6 +12,9 @@ import Contact from "./comonents/contact/contact";
 import Mobile from "./comonents/electronics/Mobile";
 
 import Cart from "./comonents/cart/cart";
+import Checkout from "./comonents/checkout/checkout";
+import ForgetPass from "./comonents/password/forget.password";
+import NewPass from "./comonents/password/new.password";
 
 class App extends Component {
   render() {
@@ -29,6 +32,10 @@ class App extends Component {
             <Route path="/product/:id" exact component={ProductDetails} />
             <Route path="/cart" exact component={Cart} />
             <Route path="/Categorys/:name" exact component={Mobile} />
+            <Route path="/forget" exact component={ForgetPass} />
+            <Route path="/forgotpassword" exact component={NewPass} />
+
+            <PrivateRoute path="/checkout" exact component={Checkout} />
           </Switch>
         </Router>
       </React.Fragment>

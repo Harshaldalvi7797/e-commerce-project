@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
   fetchProductById,
-  AddToCart
+  AddToCart,
+  AddToUserCart
 } from "../../redux/action/products/products";
 import { Card, Button } from "react-bootstrap";
 import Loading from "../spinner/spinner";
@@ -20,7 +21,11 @@ class ProductDetails extends Component {
   }
   AddCart = id => {
     this.props.AddToCart(id);
+    //this.props.AddToUserCart(id);
     //this.props.history.push("/cart");
+  };
+  AddToUserCart = id => {
+    this.props.AddToUserCart(id);
   };
   render() {
     console.log(this.paraId);
@@ -191,6 +196,8 @@ const mapStateToProps = state => {
     loading: state.shopProducts.loading
   };
 };
-export default connect(mapStateToProps, { fetchProductById, AddToCart })(
-  ProductDetails
-);
+export default connect(mapStateToProps, {
+  fetchProductById,
+  AddToCart,
+  AddToUserCart
+})(ProductDetails);

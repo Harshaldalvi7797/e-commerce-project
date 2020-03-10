@@ -52,9 +52,9 @@ class Navigation extends Component {
             </Nav>
             <Nav>
               <i className="fa fa-cart-arrow-down" aria-hidden="true">
-                {this.props.cartItemsCount.items.length > 0 ? (
+                {/* {this.props.cartItemsCount.items.length > 0 ? (
                   <h5>{this.props.cartItemsCount.items.length}</h5>
-                ) : null}
+                ) : null} */}
               </i>
             </Nav>
             <React.Fragment>

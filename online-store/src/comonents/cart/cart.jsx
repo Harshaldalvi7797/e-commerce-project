@@ -4,7 +4,8 @@ import {
   AddToCart,
   RemoveCart,
   AddQuentity,
-  RemoveQuentity
+  RemoveQuentity,
+  AddToUserCart
 } from "../../redux/action/products/products";
 import Loader from "../spinner/spinner";
 import "./cart.css";
@@ -159,7 +160,11 @@ class Cart extends Component {
                       </h3>
                     </td>
                     <td>
-                      <button type="button" className="btn btn-success">
+                      <button
+                        type="button"
+                        className="btn btn-success"
+                        onClick={() => this.props.history.push("/checkout")}
+                      >
                         Checkout{" "}
                         <span className="glyphicon glyphicon-play"></span>
                       </button>
@@ -201,6 +206,7 @@ export default connect(mapStateToProps, {
   AddToCart,
   RemoveCart,
   AddQuentity,
-  RemoveQuentity
+  RemoveQuentity,
+  AddToUserCart
 })(Cart);
 //export default Cart;
