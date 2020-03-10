@@ -50,6 +50,13 @@ class Navigation extends Component {
                 Contact Us
               </Nav.Link>
             </Nav>
+            <Nav>
+              <i className="fa fa-cart-arrow-down" aria-hidden="true">
+                {this.props.cartItemsCount.items.length > 0 ? (
+                  <h5>{this.props.cartItemsCount.items.length}</h5>
+                ) : null}
+              </i>
+            </Nav>
             <React.Fragment>
               {this.props.loginuser.user ? (
                 <Nav>
@@ -60,7 +67,6 @@ class Navigation extends Component {
                   >
                     Logout
                   </Nav.Link>
-                  <i className="fa fa-cart-arrow-down" aria-hidden="true"></i>
                 </Nav>
               ) : (
                 <Nav>
@@ -87,7 +93,8 @@ const mapStateToProps = state => {
   console.log(state);
   return {
     loginuser: state.login,
-    cartdata: state.cart
+    cartdata: state.cart,
+    cartItemsCount: state.cart
   };
 };
 export default connect(mapStateToProps, { logout })(Navigation);
