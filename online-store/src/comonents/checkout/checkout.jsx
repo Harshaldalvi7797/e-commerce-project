@@ -1,12 +1,9 @@
 import React, { Component } from "react";
+import "./check.css";
 
 class Checkout extends Component {
   render() {
-    return (
-      <div className="container">
-        <h1>Checkouts</h1>
-      </div>
-    );
+    return <div>Checkout</div>;
   }
 }
 export default Checkout;
