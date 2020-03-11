@@ -66,7 +66,7 @@ router.get("/fetchproduct", async (req, res) => {
 // });
 
 router.get("/fetchproducts/:category", async (req, res) => {
-  let data = await Product.find({ category: req.params.category });
+  let data = await Product.find({ category: req.params.subcategory });
   console.log(data);
 
   res.send({ d: data });

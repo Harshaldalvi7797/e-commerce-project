@@ -51,6 +51,12 @@ class ForgetPass extends Component {
                   <h2 className="text-center">Forgot Password?</h2>
                   <p>You can reset your password here.</p>
                   <div className="panel-body">
+                    {this.props.error ? (
+                      <div className="alert alert-danger">
+                        {this.props.error.response.data.message}
+                        {/* {this.props.error.message_error} */}
+                      </div>
+                    ) : null}
                     <form onSubmit={this.handleFormSubmit}>
                       <div className="form-group">
                         <div className="input-group">
@@ -101,6 +107,8 @@ class ForgetPass extends Component {
 }
 const mapStateToProps = state => {
   console.log(state.pass);
-  return state;
+  return {
+    error: state.pass.message_error
+  };
 };
 export default connect(mapStateToProps, { forgetPassword })(ForgetPass);

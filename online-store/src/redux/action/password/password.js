@@ -1,4 +1,4 @@
-import { FORGET_PASSWORD } from "./password.type";
+import { FORGET_PASSWORD, ERROR } from "./password.type";
 import { forgetpassword } from "../../api/password/password";
 
 export const forgetPassword = data => {
@@ -8,7 +8,7 @@ export const forgetPassword = data => {
       console.log(user);
       dispatch({ type: FORGET_PASSWORD, payload: user.data });
     } catch (ex) {
-      //   dispatch({ type: ERROR, payload: ex });
+      dispatch({ type: ERROR, payload: ex });
     }
   };
 };

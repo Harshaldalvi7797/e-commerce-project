@@ -15,6 +15,7 @@ import Cart from "./comonents/cart/cart";
 import Checkout from "./comonents/checkout/checkout";
 import ForgetPass from "./comonents/password/forget.password";
 import NewPass from "./comonents/password/new.password";
+import About from "./comonents/about/about";
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/home" exact component={Home} />
+            <Route path="/about" exact component={About} />
             <Route path="/signup" exact component={Signup} />
             <Route path="/login" exact component={Login} />
             <Route path="/contact" exact component={Contact} />

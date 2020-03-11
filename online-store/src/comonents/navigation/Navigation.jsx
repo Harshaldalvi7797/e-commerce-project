@@ -27,7 +27,7 @@ class Navigation extends Component {
               <Nav.Link as={Link} to={"/home"}>
                 Home
               </Nav.Link>
-              <Nav.Link as={Link} to={"/mobile"}>
+              <Nav.Link as={Link} to={"/about"}>
                 About Us
               </Nav.Link>
 
