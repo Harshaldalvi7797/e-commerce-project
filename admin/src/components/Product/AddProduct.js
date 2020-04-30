@@ -31,7 +31,14 @@ class AddProduct extends Component {
     data.append("image", this.state.image);
     data.append("product", this.state.product);
 
-    this.props.AddProduct1(data);
+    await axios
+      .post("http://localhost:4600/api/addproduct", data, {})
+      .then(res => {
+        console.log(res);
+        alert("Thank you");
+      });
+
+    // this.props.AddProduct1(data);
   };
 
   render() {
