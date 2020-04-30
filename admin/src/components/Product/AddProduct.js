@@ -9,7 +9,7 @@ class AddProduct extends Component {
     super(props);
     // this.state = { apiResponse: "" };
     this.state = {
-      name: "",
+      product: "",
       category: "",
       price: "",
       decription: "",
@@ -23,58 +23,17 @@ class AddProduct extends Component {
   setproduct = e => this.setState({ name: e.target.value });
   setcategory = e => this.setState({ category: e.target.value });
   setprice = e => this.setState({ price: e.target.value });
+  // On submit
+  onSubmitMethod = async e => {
+    e.preventDefault();
 
-  // handleInput = async e => {
-  //   e.preventDefault();
-  //   if (this.validator.allValid()) {
-  //     let data = {};
-  //     // console.log(data);
-  //     // console.log(this.props.AddProduct1(data));
-  //     let res = await axios.post(
-  //       "http://localhost:4600/api/addproduct",
-  //       {
-  //         product: this.state.product,
-  //         category: this.state.category
-  //       },
-
-  //       JSON.stringify(data),
-  //       // @ts-ignore
-  //       {
-  //         headers: {
-  //           "Content-Type":
-  //             "multipart/form-data; boundary=--------------------------178592083580993132863015"
-  //         }
-  //       }
-  //     );
-  //     console.log(res);
-  //     console.log(data);
-  //   } else {
-  //     this.validator.showMessages();
-  //     this.forceUpdate();
-  //   }
-  // };
-
-  handleFormSubmit = async e => {
     const data = new FormData();
-    data.append("product", this.state.product);
     data.append("image", this.state.image);
-    data.append("category", this.state.category);
-    console.log(data);
-    // this.props.AddProduct1(data);
-    await axios
-      .post("http://localhost:4600/api/addproduct", data, {})
-      .then(res => {
-        console.log(res);
-        alert("Thank you");
-        this.props.close();
-      });
+    data.append("product", this.state.product);
+
+    this.props.AddProduct1(data);
   };
-  //Image Save
-  img = e => {
-    this.setState({ photo: e.target.files[0] }, () => {
-      console.log(this.state.photo);
-    });
-  };
+
   render() {
     // value={this.state.name}
     // onChange={this.setproduct}
@@ -82,14 +41,14 @@ class AddProduct extends Component {
       <React.Fragment>
         <Navigation />{" "}
         <div className="container">
-          <form onSubmit={this.handleFormSubmit}>
+          <form onSubmit={this.onSubmitMethod}>
             <div className="row">
               <div className="col-md-3">
                 <input
                   type="text"
-                  name="name"
+                  name="product"
                   placeholder="Enter Product name"
-                  value={this.state.name}
+                  value={this.state.product}
                   onChange={this.setproduct}
                 />{" "}
               </div>
