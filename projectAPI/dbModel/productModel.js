@@ -3,9 +3,9 @@ let jwt = require("jsonwebtoken");
 let config = require("config");
 
 let productSchema = new mongoose.Schema({
-  name: { type: String, min: 3, max: 550, required: false },
+  name: { type: String, min: 3, max: 550 },
   image: { type: String },
-  description: { type: String, minlength: 10, maxlength: 250 },
+  description: { type: String },
   price: { type: Number, minlength: 1 },
   offerPrice: { type: Number, minlength: 1 },
   isAvailable: { type: Boolean },

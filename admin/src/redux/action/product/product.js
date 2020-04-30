@@ -5,7 +5,7 @@ export const AddProduct1 = item => {
     try {
       let product = await Product(item);
       console.log(product);
-      // localStorage.setItem("currentuser", JSON.stringify(product));
+
       dispatch({ type: ADD_PRODUCT, payload: product.data });
       //   alert("Login Done");
       //   history.push("/product");

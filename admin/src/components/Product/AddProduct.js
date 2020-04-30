@@ -9,20 +9,18 @@ class AddProduct extends Component {
     super(props);
     // this.state = { apiResponse: "" };
     this.state = {
-      product: "",
+      name: "",
       category: "",
       price: "",
       decription: "",
-      image: null,
-      selectedFile: null
+      image: ""
     };
     this.validator = new SimpleReactValidator({ autoForceUpdate: this });
-    // this.onSubmitMethod = this.onSubmitMethod.bind(this);
-    // this.onChange = this.onChange.bind(this);
   }
   setproduct = e => this.setState({ name: e.target.value });
   setcategory = e => this.setState({ category: e.target.value });
   setprice = e => this.setState({ price: e.target.value });
+  getimage = e => this.setState({ image: e.target.files[0] });
   // On submit
   onSubmitMethod = async e => {
     e.preventDefault();
@@ -30,15 +28,11 @@ class AddProduct extends Component {
     const data = new FormData();
     data.append("image", this.state.image);
     data.append("product", this.state.product);
+    data.append("price", this.state.price);
+    data.append("category", this.state.category);
 
-    await axios
-      .post("http://localhost:4600/api/addproduct", data, {})
-      .then(res => {
-        console.log(res);
-        alert("Thank you");
-      });
-
-    // this.props.AddProduct1(data);
+    console.log(data);
+    this.props.AddProduct1(data);
   };
 
   render() {
@@ -55,7 +49,7 @@ class AddProduct extends Component {
                   type="text"
                   name="product"
                   placeholder="Enter Product name"
-                  value={this.state.product}
+                  value={this.state.name}
                   onChange={this.setproduct}
                 />{" "}
               </div>
@@ -86,12 +80,7 @@ class AddProduct extends Component {
               </div>
               <div className="col-md-3">
                 {/* <input type="file" name="image" onChange={this.setimage} /> */}
-                <input
-                  type="file"
-                  name="image"
-                  onChange={this.img}
-                  value={this.state.value}
-                />
+                <input type="file" name="image" onChange={this.getimage} />
               </div>
               <div className="col-md-3">
                 <input type="submit" name="submit" value="submit" />
@@ -106,10 +95,6 @@ class AddProduct extends Component {
 const mapStateToProps = state => {
   console.log(state);
   return { state };
-  // console.log(state.product, "maptostate");
-  // return { error: state.product.message_error };
-
-  //return { product: state.product };
 };
 
 export default connect(mapStateToProps, { AddProduct1 })(AddProduct);

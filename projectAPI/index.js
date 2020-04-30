@@ -18,9 +18,9 @@ app.use("/uploads", express.static("uploads"));
 app.use(cors());
 
 app.use(express.json());
-if (!config.get("apitoken")) {
-  process.exit(1);
-}
+// if (!config.get("apitoken")) {
+//   process.exit(1);
+// }
 
 mongoose
   .connect("mongodb://localhost/ecomm", {

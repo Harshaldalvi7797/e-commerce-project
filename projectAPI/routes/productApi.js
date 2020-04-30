@@ -12,7 +12,7 @@ let storage = multer.diskStorage({
     cb(null, file.originalname);
   }
 });
-let fileFilter = function(req, file, cb) {
+let fileFilter = (req, file, cb) => {
   if (
     file.mimetype === "image/png" ||
     file.mimetype === "image/jpg" ||
@@ -30,12 +30,13 @@ let uploads = multer({
   },
   fileFilter: fileFilter
 });
+
 //insert product
 router.post("/addproduct", uploads.single("image"), async (req, res) => {
   let newproduct = new Product({
     name: req.body.name,
-    // image:req.body.image,
-    //image: port + "/uploads/" + req.file.filename,
+
+    image: port + "/uploads/" + req.file.filename,
     description: req.body.description,
     price: req.body.price,
     offerPrice: req.body.offerPrice,
