@@ -3,7 +3,8 @@ import {
   ERROR,
   LOGIN_USER,
   LOGGED_USER,
-  PRE_LOADER
+  PRE_LOADER,
+  ADD_USERCART
 } from "./user.type";
 import { userRegister, Login } from "../../api/user/register";
 import { history } from "../../../helpers/history/index";
@@ -61,3 +62,24 @@ export const UserLogin = () => {
     }
   };
 };
+
+// export const AddToUserCart = item => {
+//   return async dispatch => {
+//     try {
+//       // dispatch({ type: LOADING });
+//       // let response = await fetchProductsId(id);
+
+//       let response = await AddtoCart(item);
+//       console.log(response);
+
+//       setTimeout(() => {
+//         dispatch({ type: ADD_USERCART, payload: response.data });
+
+//         history.push("/cart");
+//         window.location.reload();
+//       }, 1000);
+//     } catch (ex) {
+//       // dispatch({ type: SHOW_ERROR, payload: ex.response.data });
+//     }
+//   };
+// };

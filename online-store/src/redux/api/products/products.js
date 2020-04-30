@@ -27,9 +27,9 @@ export const fetchProductsId = id => {
   return axios.get(FETCH_PRODUCT_BYID + id, config);
 };
 
-export const fetchProductsCategory = category => {
-  console.log(FETCH_PRODUCT_BYCATEGORY + category);
-  return axios.get(FETCH_PRODUCT_BYCATEGORY + category, config);
+export const fetchProductsCategory = subcategory => {
+  console.log(FETCH_PRODUCT_BYCATEGORY + subcategory);
+  return axios.get(FETCH_PRODUCT_BYCATEGORY + subcategory, config);
 };
 
 export const AddtoCart = data => {

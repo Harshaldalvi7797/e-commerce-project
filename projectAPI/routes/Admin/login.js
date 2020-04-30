@@ -18,14 +18,15 @@ router.get("/me", auth, async (req, res) => {
   res.send(data);
 });
 
-router.post("/login", async (req, res) => {
+router.post("/adminlogin", async (req, res) => {
   let { error } = AuthValidation(req.body);
   if (error) {
     return res.send(error.details[0].message);
   }
 
   let user = await User.userModel.findOne({
-    "UserLogin.EmailId": req.body.UserLogin.EmailId
+    "UserLogin.EmailId": req.body.UserLogin.EmailId,
+    isAdmin: true
   });
   // let user1 = await User.userModel.find({
   //   "UserLogin.isAdmin": true

@@ -32,7 +32,7 @@ class Navigation extends Component {
               </Nav.Link>
 
               <DropdownButton id="dropdown-item-button" title="Electronics">
-                <Dropdown.Item as={Link} to={"/Categorys/electronics"}>
+                <Dropdown.Item as={Link} to={"/Categorys/mobiles"}>
                   Mobile
                 </Dropdown.Item>
                 {/* onClick={() =>s
@@ -42,7 +42,9 @@ class Navigation extends Component {
                 <Dropdown.Item as="button">Something else</Dropdown.Item>
               </DropdownButton>
               <DropdownButton id="dropdown-item-button" title="Cloths">
-                <Dropdown.Item as="button">Mens</Dropdown.Item>
+                <Dropdown.Item as={Link} to={"/Categorys/Mens"}>
+                  Mens
+                </Dropdown.Item>
                 <Dropdown.Item as="button">Womens</Dropdown.Item>
                 <Dropdown.Item as="button">Something else</Dropdown.Item>
               </DropdownButton>

@@ -5,14 +5,14 @@ let config = require("config");
 let productSchema = new mongoose.Schema({
   name: { type: String, min: 3, max: 550, required: false },
   image: { type: String },
-  description: { type: String, required: true, minlength: 10, maxlength: 250 },
-  price: { type: Number, required: true, minlength: 1 },
-  offerPrice: { type: Number, required: true, minlength: 1 },
-  isAvailable: { type: Boolean, required: true },
-  isTodayOffer: { type: Boolean, required: true },
-  category: { type: String, required: true, minlength: 3, maxlength: 100 },
+  description: { type: String, minlength: 10, maxlength: 250 },
+  price: { type: Number, minlength: 1 },
+  offerPrice: { type: Number, minlength: 1 },
+  isAvailable: { type: Boolean },
+  isTodayOffer: { type: Boolean },
+  category: { type: String, minlength: 3, maxlength: 100 },
   subcategory: { type: String, minlength: 3, maxlength: 100 },
-  isAdmin: { type: Boolean, required: true },
+  isAdmin: { type: Boolean },
   recordDate: { type: Date, default: Date.now },
   updatedate: { type: Date, default: Date.now }
 });

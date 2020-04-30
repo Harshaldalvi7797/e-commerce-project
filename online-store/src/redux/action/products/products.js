@@ -46,12 +46,12 @@ export const fetchProductById = id => {
   };
 };
 
-export const fetchProductByCategory = category => {
+export const fetchProductByCategory = subcategory => {
   return async dispatch => {
     try {
       dispatch({ type: LOADING });
       // let response = await fetchProducts();
-      let response = await fetchProductsCategory(category);
+      let response = await fetchProductsCategory(subcategory);
       console.log("action");
       console.log(response);
       setTimeout(() => {

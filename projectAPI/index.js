@@ -11,6 +11,7 @@ let contact = require("./routes/contactApi");
 let product = require("./routes/productApi");
 let category = require("./routes/categoryApi");
 let cartItem = require("./routes/usercartApi");
+let adminLogin = require("./routes/Admin/login");
 let cors = require("cors");
 
 app.use("/uploads", express.static("uploads"));
@@ -39,3 +40,4 @@ app.use("/api", contact);
 app.use("/api", product);
 app.use("/api", category);
 app.use("/api", cartItem);
+app.use("/api/admin", adminLogin);

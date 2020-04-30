@@ -35,7 +35,7 @@ router.post("/addproduct", uploads.single("image"), async (req, res) => {
   let newproduct = new Product({
     name: req.body.name,
     // image:req.body.image,
-    image: port + "/uploads/" + req.file.filename,
+    //image: port + "/uploads/" + req.file.filename,
     description: req.body.description,
     price: req.body.price,
     offerPrice: req.body.offerPrice,
@@ -65,8 +65,8 @@ router.get("/fetchproduct", async (req, res) => {
 //   res.send({ d: data });
 // });
 
-router.get("/fetchproducts/:category", async (req, res) => {
-  let data = await Product.find({ category: req.params.subcategory });
+router.get("/fetchproducts/:subcategory", async (req, res) => {
+  let data = await Product.find({ subcategory: req.params.subcategory });
   console.log(data);
 
   res.send({ d: data });

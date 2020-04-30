@@ -35,7 +35,7 @@ class App extends Component {
             <Route path="/cart" exact component={Cart} />
             <Route path="/Categorys/:name" exact component={Mobile} />
             <Route path="/forget" exact component={ForgetPass} />
-            <Route path="/forgotpassword" exact component={NewPass} />
+            <Route path="/forgotpassword/:token" exact component={NewPass} />
 
             <PrivateRoute path="/checkout" exact component={Checkout} />
           </Switch>
