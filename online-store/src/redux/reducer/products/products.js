@@ -8,7 +8,8 @@ import {
   REMOVE_CART,
   ADD_QUENTITY,
   REMOVE_QUENTITY,
-  FETCH_PRODUCT_BYCATEGORY
+  FETCH_PRODUCT_BYCATEGORY,
+  PAGINATION_BY_PRODUCTS
 } from "../../action/products/product.type";
 import { LOGGED_USER, LOGIN_USER } from "../../action/user/user.type";
 import {
@@ -19,8 +20,8 @@ import {
 
 export const ShowProducts = (state = {}, action) => {
   switch (action.type) {
-    case LOADING:
-      return { loading: true };
+    // case LOADING:
+    //   return { loading: true };
 
     case FETCH_PRODUCT_DATA:
       return { ...state, item: action.payload, loading: false };
@@ -127,3 +128,17 @@ export const AddToCart = (state = INITIAL_STATE, action) => {
 //       return state;
 //   }
 // };
+
+export const FetchPagination = (state = {}, action) => {
+  switch (action.type) {
+    // case LOADING:
+    //   return { loading: true };
+
+    case PAGINATION_BY_PRODUCTS:
+      return { ...state, item: action.payload };
+    case SHOW_ERROR:
+      return { error: action.payload };
+    default:
+      return state;
+  }
+};

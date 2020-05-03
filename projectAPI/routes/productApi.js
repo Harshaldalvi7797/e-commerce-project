@@ -30,13 +30,13 @@ let uploads = multer({
   },
   fileFilter: fileFilter
 });
-
+var upload = multer().single("image");
 //insert product
 router.post("/addproduct", uploads.single("image"), async (req, res) => {
   let newproduct = new Product({
     name: req.body.name,
 
-    image: port + "/uploads/" + req.file.filename,
+    //image: port + "/uploads/" + req.file.filename,
     description: req.body.description,
     price: req.body.price,
     offerPrice: req.body.offerPrice,
@@ -49,6 +49,7 @@ router.post("/addproduct", uploads.single("image"), async (req, res) => {
     updateDate: req.body.updateDate
   });
   let data = await newproduct.save();
+  console.log(data);
   res.send({ message: "product addess successfully", d: data });
 });
 

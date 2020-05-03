@@ -4,36 +4,49 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { AddProduct1 } from "../../redux/action/product/product";
 import Navigation from "../Navigation";
+import { file } from "@babel/types";
 class AddProduct extends Component {
   constructor(props) {
     super(props);
     // this.state = { apiResponse: "" };
     this.state = {
       name: "",
-      category: "",
+      subcategory: "",
       price: "",
       decription: "",
-      image: ""
+      image: "",
+      offerPrice: ""
     };
     this.validator = new SimpleReactValidator({ autoForceUpdate: this });
   }
   setproduct = e => this.setState({ name: e.target.value });
-  setcategory = e => this.setState({ category: e.target.value });
+  setsubcategory = e => this.setState({ subcategory: e.target.value });
   setprice = e => this.setState({ price: e.target.value });
+  setofferPrice = e => this.setState({ offerPrice: e.target.value });
+  setdecription = e => this.setState({ decription: e.target.value });
   getimage = e => this.setState({ image: e.target.files[0] });
-  // On submit
-  onSubmitMethod = async e => {
+
+  handleInput = async e => {
     e.preventDefault();
-
-    const data = new FormData();
-    data.append("image", this.state.image);
-    data.append("product", this.state.product);
-    data.append("price", this.state.price);
-    data.append("category", this.state.category);
-
-    console.log(data);
-    this.props.AddProduct1(data);
+    if (this.validator.allValid()) {
+      let data = {
+        name: this.state.name,
+        subcategory: this.state.subcategory,
+        image: this.state.image,
+        price: this.state.price,
+        decription: this.state.decription,
+        offerPrice: this.state.offerPrice
+      };
+      console.log(data);
+      await this.props.AddProduct1(data);
+      console.log(data);
+    } else {
+      this.validator.showMessages();
+      this.forceUpdate();
+    }
   };
+
+  // On submit
 
   render() {
     // value={this.state.name}
@@ -42,51 +55,93 @@ class AddProduct extends Component {
       <React.Fragment>
         <Navigation />{" "}
         <div className="container">
-          <form onSubmit={this.onSubmitMethod}>
-            <div className="row">
-              <div className="col-md-3">
+          <div className="row">
+            <form onSubmit={this.handleInput}>
+              <div className=" form-group">
                 <input
                   type="text"
+                  className="form-control"
                   name="product"
                   placeholder="Enter Product name"
                   value={this.state.name}
                   onChange={this.setproduct}
                 />{" "}
+                {this.validator.message(
+                  "Product name",
+                  this.state.name,
+                  "required"
+                )}
               </div>
-              <div className="col-md-3">
+              <div className=" form-group">
                 <input
                   type="text"
-                  name="category"
+                  className="form-control"
+                  name="subcategory"
                   placeholder="Enter Product category"
-                  value={this.state.category}
-                  onChange={this.setcategory}
+                  value={this.state.subcategory}
+                  onChange={this.setsubcategory}
                 />
+                {this.validator.message(
+                  "subcategory",
+                  this.state.subcategory,
+                  "required"
+                )}
               </div>
-              <div className="col-md-3">
+              <div className=" form-group">
                 <input
                   type="text"
-                  name="product"
+                  className="form-control"
+                  name="price"
                   placeholder="Enter Product Price"
                   value={this.state.price}
                   onChange={this.setprice}
                 />
+                {this.validator.message("price", this.state.price, "required")}
               </div>
-              <div className="col-md-3">
+              <div className=" form-group">
                 <input
                   type="text"
-                  name="product"
-                  placeholder="Enter Product decription"
+                  className="form-control"
+                  name="offerPrice"
+                  placeholder="Enter Product Offer Price"
+                  value={this.state.offerPrice}
+                  onChange={this.setofferPrice}
                 />
+                {this.validator.message(
+                  "OfferPrice",
+                  this.state.offerPrice,
+                  "required"
+                )}
               </div>
-              <div className="col-md-3">
+              <div className=" form-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  name="description"
+                  placeholder="Enter Product decription"
+                  value={this.state.decription}
+                  onChange={this.setdecription}
+                />
+                {this.validator.message(
+                  "decription",
+                  this.state.decription,
+                  "required"
+                )}
+              </div>
+              <div className=" form-group">
                 {/* <input type="file" name="image" onChange={this.setimage} /> */}
                 <input type="file" name="image" onChange={this.getimage} />
               </div>
-              <div className="col-md-3">
-                <input type="submit" name="submit" value="submit" />
+              <div className="form-group">
+                <input
+                  type="submit"
+                  className="btn btn-success"
+                  name="submit"
+                  value="submit"
+                />
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </React.Fragment>
     );

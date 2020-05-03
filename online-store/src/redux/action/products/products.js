@@ -8,13 +8,15 @@ import {
   REMOVE_CART,
   ADD_QUENTITY,
   REMOVE_QUENTITY,
-  FETCH_PRODUCT_BYCATEGORY
+  FETCH_PRODUCT_BYCATEGORY,
+  PAGINATION_BY_PRODUCTS
 } from "./product.type";
 import {
   fetchProducts,
   fetchProductsId,
   fetchProductsCategory,
-  AddtoCart
+  AddtoCart,
+  fetchPagination
 } from "../../api/products/products";
 import { history } from "../../../helpers/history/index";
 
@@ -156,6 +158,21 @@ export const RemoveQuentity = data => {
       }, 1000);
     } catch (ex) {
       // dispatch({ type: SHOW_ERROR, payload: ex.response.data });
+    }
+  };
+};
+
+export const pagination = () => {
+  return async dispatch => {
+    try {
+      dispatch({ type: LOADING });
+      let response = await fetchPagination();
+      console.log(response);
+      setTimeout(() => {
+        dispatch({ type: PAGINATION_BY_PRODUCTS, payload: response.data });
+      }, 1000);
+    } catch (ex) {
+      dispatch({ type: SHOW_ERROR, payload: ex.response.data });
     }
   };
 };

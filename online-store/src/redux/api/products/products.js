@@ -10,6 +10,9 @@ const FETCH_PRODUCT_BYID = "http://localhost:4600/api/fetchproduct/";
 //const ADD_TO_CART = "http://localhost:4600/api/addusercart";
 const ADD_TO_CART = "http://localhost:4600/api/addcart";
 
+//pagination
+const PAGINATION_PRODUCTS = "http://localhost:4600/api/pagination/";
+
 let config = {
   headers: {
     "Content-type": "application/json"
@@ -34,4 +37,8 @@ export const fetchProductsCategory = subcategory => {
 
 export const AddtoCart = data => {
   return axios.post(ADD_TO_CART, JSON.stringify(data), config);
+};
+
+export const fetchPagination = no => {
+  return axios.post(PAGINATION_PRODUCTS + no, config);
 };

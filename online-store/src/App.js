@@ -16,6 +16,7 @@ import Checkout from "./comonents/checkout/checkout";
 import ForgetPass from "./comonents/password/forget.password";
 import NewPass from "./comonents/password/new.password";
 import About from "./comonents/about/about";
+import { Pagination } from "react-bootstrap";
 
 class App extends Component {
   render() {
@@ -46,3 +47,4 @@ class App extends Component {
 }
 
 export default App;
+// 580588530;

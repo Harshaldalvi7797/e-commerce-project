@@ -6,7 +6,8 @@ import {
   ShowProducts,
   ShowProductById,
   AddToCart,
-  ShowProductByCategory
+  ShowProductByCategory,
+  FetchPagination
 } from "../reducer/products/products";
 import { ForgetPass } from "../reducer/password/password";
 import { ContactSend } from "../reducer/contact/contact";
@@ -19,7 +20,8 @@ const reducers = combineReducers({
   cart: AddToCart,
   contact: ContactSend,
   fetchproductsByCategory: ShowProductByCategory,
-  pass: ForgetPass
+  pass: ForgetPass,
+  pagination: FetchPagination
   // usercart: AddToUserCart
 });
 // fetchproductsByCategory: ShowProductByCategory
